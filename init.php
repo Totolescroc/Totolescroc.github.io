@@ -2,7 +2,7 @@
 
 //je me co à la base de donnée
 
-$pdo = new PDO('mysql:host=localhost;dbname=social-network', 'root', '', array(PDO::ATTR_ERRMODE =>
+$pdo = new PDO('mysql:host=localhost;dbname=social_network', 'root', '', array(PDO::ATTR_ERRMODE =>
     PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 
 //je vérifie:
@@ -12,7 +12,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=social-network', 'root', '', array(P
 session_start();
 
 //s'il y a une action dans l'url et si cette action est = à deconnexion, alors je détruis la session:
-if(isset($_GET['action'] && $_GET['action'] =='deconnexion')) {
+if(isset($_GET['action']) && $_GET['action'] =='deconnexion') {
     session_destroy();
     //je redirige vers l'acceuil
     header('location:index.php');
