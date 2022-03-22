@@ -24,8 +24,7 @@ if($_POST) {
             //je teste si le mdp fonctionne:
             $content .= '<p>email + MDP : ok</p>';
             //j'enregistre les infos dans la session:
-            $_SESSION['membre']['nom'] = $membre['nom'];
-            $_SESSION['membre']['prenom'] = $membre['prenom'];
+            $_SESSION['membre']['pseudo'] = $membre['pseudo'];
             $_SESSION['membre']['email'] = $membre['email'];
 
             //je redirige vers la page d'acceuil

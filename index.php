@@ -14,7 +14,7 @@ include('init.php');
     <?php
         if(isset($_SESSION['membre'])) {
     ?>
-        <h1>Bonjour <?php echo $_SESSION['membre']['prenom'].' '. $_SESSION['membre']['nom']?> !</h1>
+        <h1>Bonjour <?php echo $_SESSION['membre']['pseudo'].?> !</h1>
     <?php
         } else {
     ?>
