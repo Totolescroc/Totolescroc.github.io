@@ -15,7 +15,9 @@ if($_POST) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Annonce</title>
 </head>
+
 <body>
+
     <?php echo $content;?>
     <form method="post">
         <label for="titre">Titre de l'annonce</label>
@@ -31,3 +33,9 @@ if($_POST) {
     </form>
 </body>
 </html>
+
+<script>
+    //empeche de selectionner date passée
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("date_post")[0].setAttribute('min', today);
+</script>
