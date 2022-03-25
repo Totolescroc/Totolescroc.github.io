@@ -14,7 +14,10 @@ include('init.php');
     <?php
         if(isset($_SESSION['membre'])) {
     ?>
-        <h1>Bonjour <?php echo $_SESSION['membre']['pseudo']?> !</h1>
+    	<a href="?action=deconnexion">Déconnexion</a>
+		<br>
+
+        <h1>Bonjour <?php echo $_SESSION['membre']['pseudo'];?> !</h1>
     <?php
         } else {
     ?>
