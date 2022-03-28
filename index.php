@@ -8,7 +8,7 @@ include('init.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercice</title>
+    <title>Home page</title>
 </head>
 <body>
     <?php
@@ -27,8 +27,18 @@ include('init.php');
     -
 
     <a href="connexion.php">connexion</a>
+    <br>
     <?php
        }
+    ?>
+    <?php
+    //affiche les event stockés dans la table post
+        $r = $pdo ->query('SELECT * FROM post');
+        while ($event = $r-> fetch(PDO::FETCH_ASSOC)) {
+            echo $event['titre'] . ' ' . $event['date_post'] . '<br>' . $event['content_post'] . '<br>';
+        }
+
+
     ?>
 </body>
 </html>
