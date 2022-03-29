@@ -4,7 +4,7 @@ include('init.php');
 
 <?php
 if($_POST) {
-    $pdo->exec("INSERT INTO post (titre, date_post, content_post) VALUES ('$_POST[titre]', '$_POST[date_post]', '$_POST[description]')");
+    $pdo->exec("INSERT INTO post (titre, date_post, content_post, heure_post) VALUES ('$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
 }
 ?>
 <!DOCTYPE html>
@@ -26,6 +26,7 @@ if($_POST) {
         <br></br>
         <input type="date" name="date_post" id="date_post" required>
         <br></br>
+        <input type="time" name="heure_post" id="heure_post">
         <label for="description">Description</label>
         <input type="text" name="description" id="description" required>
         <br></br>
