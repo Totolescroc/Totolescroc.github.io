@@ -20,4 +20,7 @@ if(isset($_GET['action']) && $_GET['action'] =='deconnexion') {
 
 // je déclare une variable permettant d'afficher des messages pour l'utilisateur :
 $content = "";
+
+
+
 ?>

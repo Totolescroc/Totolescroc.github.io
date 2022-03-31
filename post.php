@@ -1,12 +1,24 @@
 <?php
-include('init.php');
+require "funnction.php";
+include('header.php');
+$user = $_SESSION['membre']["email"] ?? "";
+$currentUsers = getUrrentUser($user);
+// echo "<pre>";
+// print_r($currentUsers);
+// echo "</pre>";
+if (!$currentUsers) {
+    header("location:index.php");
+}
+
+// $post =[ 
+//     `id_membre` => $currentUsers['id_membre'],
+//     `titre` => $_POST['titre'],
+//     `date_post`=> $_POST['date_post'],
+//     `content_post` => $_POST['description']
+// ]
+
 ?>
 
-<?php
-if($_POST) {
-    $pdo->exec("INSERT INTO post (titre, date_post, content_post, heure_post) VALUES ('$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +39,7 @@ if($_POST) {
         <input type="date" name="date_post" id="date_post" required>
         <br></br>
         <input type="time" name="heure_post" id="heure_post">
+        <br><br>
         <label for="description">Description</label>
         <input type="text" name="description" id="description" required>
         <br></br>
