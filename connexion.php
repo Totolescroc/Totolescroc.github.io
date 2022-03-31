@@ -1,5 +1,7 @@
 <?php
 include('init.php');
+include('header.php');
+
 
 //si la session membre existe alors je redirige vers l 'acceuil:
 if(isset($_SESSION['membre'])) {
