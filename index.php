@@ -1,7 +1,6 @@
 <?php
 require "funnction.php";
 include('header.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -23,9 +22,9 @@ $user = $_SESSION['membre']["email"] ?? "";
   
 
   foreach ($currentUsers as $currentUser) {
-    echo "<pre>";
-    print_r($currentUser);
-    echo "</pre>";
+    // echo "<pre>";
+    var_dump($currentUser);
+    // echo "</pre>";
   }
 
     // var_dump($currentUser);
@@ -65,19 +64,21 @@ $user = $_SESSION['membre']["email"] ?? "";
     </form>
 
     <?php
-if(isset($_SESSION['membre']) && $_POST) {
+    $annonce = getOnePostByUserId($currentUsers[0]);
+    echo ($annonce);
+if($_POST) {
 
 
     // je gere les pb d'apostrophes :
     // $_POST['commentaire'] = addslashes($_POST['commentaire']);
     //j'envoie les infos dans la base de données :
-    $pdo->exec("INSERT INTO commentaire (content) VALUES ('$_POST[commentaire]')");
+    $pdo->exec("INSERT INTO commentaire (id_membre, content) VALUES ($currentUsers[0], '$_POST[commentaire]')");
 }
 
-$x = $pdo ->query('SELECT * FROM commentaire');
-while ($commentaire = $x-> fetch(PDO::FETCH_ASSOC)) {
-    echo $commentaire['content'] . '<br>';
-}
+// $x = $pdo ->query('SELECT * FROM commentaire');
+// while ($commentaire = $x-> fetch(PDO::FETCH_ASSOC)) {
+//     echo $commentaire['content'] . '<br>';
+// }
 ?>
 </body>
 </html>

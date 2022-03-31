@@ -45,6 +45,13 @@ if (!$currentUsers) {
         <br></br>
         <input type="submit" value="Poster">
     </form>
+
+    <?php 
+    if ($_POST) {
+        $pdo->exec("INSERT INTO post (titre, date_post, content_post, heure_post) VALUES ('$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
+
+    }
+    ?>
 </body>
 </html>
 
