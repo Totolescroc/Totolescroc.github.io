@@ -21,17 +21,18 @@ function getAllPosts(){
 // recuperation de d'un post par l'id du membre
 function getOnePostByUserId(int $id){
     global $pdo;
-    $post = $pdo->query("SELECT * FROM membre WHERE id_membre = '$id'");
+    $post = $pdo->query("SELECT * FROM post WHERE id_membre = '$id'");
     $post->execute();
     return $post->fetch();
 }
 // fonction d'insertion des d'un post
 function insertPost(array $post){
     global $pdo;
-    $pdo->exec("INSERT INTO post (titre, date_post, content_post) 
+    $pdo->exec("INSERT INTO post (titre, date_post, content_post, heure_post) 
     VALUES ('$post[titre]',
             '$post[date_post]',
-            '$post[description]')
+            '$post[description]',
+            '$post[heure_post]')
             ");  
 }
 ?>
