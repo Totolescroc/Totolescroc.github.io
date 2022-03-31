@@ -58,12 +58,12 @@ include('init.php');
 //je capte rien ici!!!!!! j'esssaye d'afficher les coms avec pseudo
 //faire une jointure?
 
-// $x = $pdo ->query('SELECT * FROM commentaire');
-// while ($commentaire = $x-> fetch(PDO::FETCH_ASSOC)) {
-//     echo $_SESSION['membre']['pseudo'] . $commentaire['content'] . '<br>';
+$x = $pdo ->query('SELECT * FROM commentaire');
+while ($event = $x-> fetch(PDO::FETCH_ASSOC)) {
+    echo $event['content'] . '<br>';
 
-// }
-?>
+ }
+?> 
 
     <hr>
 <form method="post">
