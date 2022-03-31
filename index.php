@@ -1,5 +1,7 @@
 <?php
-include('init.php');
+require "funnction.php";
+include('header.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +14,21 @@ include('init.php');
 </head>
 <body>
     <?php
+//   echo "<pre>";
+//     print_r($_SESSION);
+//   echo "</pre>";
+$user = $_SESSION['membre']["email"] ?? "";
+
+    $currentUsers =  getUrrentUser($user);
+  
+
+  foreach ($currentUsers as $currentUser) {
+    echo "<pre>";
+    print_r($currentUser);
+    echo "</pre>";
+  }
+
+    // var_dump($currentUser);
         if(isset($_SESSION['membre'])) {
     ?>
     	<a href="?action=deconnexion">Déconnexion</a>
@@ -37,8 +54,30 @@ include('init.php');
         while ($event = $r-> fetch(PDO::FETCH_ASSOC)) {
             echo $event['titre'] . ' ' . $event['date_post'] . '<br>' . $event['content_post'] . '<br>';
         }
-
-
     ?>
+
+    <h3>Commentaire</h3>
+
+    <form method="post">
+        <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
+        <br><br>
+		<input type="submit" value="commenter">
+    </form>
+
+    <?php
+if(isset($_SESSION['membre']) && $_POST) {
+
+
+    // je gere les pb d'apostrophes :
+    // $_POST['commentaire'] = addslashes($_POST['commentaire']);
+    //j'envoie les infos dans la base de données :
+    $pdo->exec("INSERT INTO commentaire (content) VALUES ('$_POST[commentaire]')");
+}
+
+$x = $pdo ->query('SELECT * FROM commentaire');
+while ($commentaire = $x-> fetch(PDO::FETCH_ASSOC)) {
+    echo $commentaire['content'] . '<br>';
+}
+?>
 </body>
 </html>

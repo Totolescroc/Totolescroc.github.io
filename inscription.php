@@ -1,5 +1,7 @@
 <?php
 include('init.php');
+include('header.php');
+
 
 // Si la session membre existe, alors je redirige vers l'accueil :
 if(isset($_SESSION['membre'])) {
@@ -49,6 +51,9 @@ if($_POST) {
 
 	// J'ajoute le contenu de $erreur à l'interieur de $content :
 	$content .= $erreur;
+	if (!$erreur) {
+		$urrentUser = $pdo->query("SELECT * FROM membre WHERE email = '$_POST[email]'");
+	}
 
 }
 ?>
