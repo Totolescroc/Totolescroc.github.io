@@ -11,12 +11,16 @@ if (!$currentUsers) {
     header("location:index.php");
 }
 
-// $post =[ 
-//     `id_membre` => $currentUsers['id_membre'],
-//     `titre` => $_POST['titre'],
-//     `date_post`=> $_POST['date_post'],
-//     `content_post` => $_POST['description']
-// ]
+$post =[ 
+    'id_membre' => $currentUsers['id_membre'],
+    'titre' => $_POST['titre'],
+    'date_post'=> $_POST['date_post'],
+    'content_post' => $_POST['description'],
+    'heure_post' => $_POST['heure_post']
+]
+
+
+
 
 ?>
 
@@ -49,7 +53,7 @@ if (!$currentUsers) {
 
     <?php 
     if ($_POST) {
-        $pdo->exec("INSERT INTO post (titre, date_post, content_post, heure_post) VALUES ('$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
+        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post) VALUES ('$currentUsers[id_membre]','$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
 
     }
     ?>
