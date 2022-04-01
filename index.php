@@ -54,7 +54,7 @@ $user = $_SESSION['membre']["email"] ?? "";
 ?>
             <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px"><a href="xxx/<?= $event['id_post'] ?>" style="color: #666; text-decoration: none; font-size: 28px;"><?= $event['titre'] ?></a><div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($event['content_post']); ?></div><a href="xxx/<?= $event['id_post'] ?>">Voir plus</a> 
                   <div style="padding-top: 15px; color: #ccc; font-style: italic; text-align: right;font-size: 12px;">
-                    Fait par  <?= $event[''] . " " . $r['prenom'] ?> </div></div>  
+                    Fait par  <?php $event['pseudo']?> </div></div>  
               
                     <?php
             // echo $event['titre'] . ' ' . $event['date_post'] . '<br>' . $event['content_post'] . '<br>';
