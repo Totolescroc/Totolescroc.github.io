@@ -19,12 +19,16 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
     $currentUsers =  getUrrentUser($user);
+    $currentUsers = array($currentUsers);
+    $id = intval($currentUsers[0][0]);
+    echo $id;
+
   
 
   foreach ($currentUsers as $currentUser) {
-    // echo "<pre>";
+    echo "<pre>";
     var_dump($currentUser);
-    // echo "</pre>";
+    echo "</pre>";
   }
 
     // var_dump($currentUser);
@@ -64,8 +68,10 @@ $user = $_SESSION['membre']["email"] ?? "";
     </form>
 
     <?php
-    $annonce = getOnePostByUserId($currentUsers[0]);
-    echo ($annonce);
+    // $x = $pdo ->query('SELECT id_post FROM post');
+// while ($allid = $x-> fetch(PDO::FETCH_ASSOC)) {
+//     echo array_values(implode($allid)[0]);
+// }
 if($_POST) {
 
 
