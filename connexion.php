@@ -1,5 +1,7 @@
 <?php
 include('init.php');
+include('header.php');
+
 
 //si la session membre existe alors je redirige vers l 'acceuil:
 if(isset($_SESSION['membre'])) {
@@ -26,6 +28,7 @@ if($_POST) {
             //j'enregistre les infos dans la session:
             $_SESSION['membre']['pseudo'] = $membre['pseudo'];
             $_SESSION['membre']['email'] = $membre['email'];
+            $_SESSION['membre']['id_membre'] = $membre['id_membre'];
 
             //je redirige vers la page d'acceuil
             header('location:index.php');
