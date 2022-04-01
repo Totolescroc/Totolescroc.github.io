@@ -53,18 +53,18 @@ $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$curr
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
         // var_dump($comcom); 
     ?>
-    
+     <?php
+    $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$commentaire[id_membre]'"); 
+    $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);  
+    echo implode($pseudo);              
+    ?>
     <div>
         <?php echo $comcom['date_com'];?> <br>
     </div>
     <div>
         <?php echo $comcom['content'];?> <br><br>
     </div>
-    <?php
-    $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$commentaire[id_membre]'"); 
-    $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);  
-    echo implode($pseudo);              
-    ?>
+
         
     <?php
         }
