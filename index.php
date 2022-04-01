@@ -57,7 +57,6 @@ $user = $_SESSION['membre']["email"] ?? "";
                     Fait par  <?php $event['pseudo']?> </div></div>  
               
                     <?php
-            // echo $event['titre'] . ' ' . $event['date_post'] . '<br>' . $event['content_post'] . '<br>';
         }
     ?>
 
@@ -79,7 +78,7 @@ if($_POST) {
     // je gere les pb d'apostrophes :
     // $_POST['commentaire'] = addslashes($_POST['commentaire']);
     //j'envoie les infos dans la base de données :
-$pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES (' $currentUsers[0]', '$_POST[commentaire]')");
+$pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$currentUsers[id_membre]', '$_POST[commentaire]')");
 }
 
 $x = $pdo ->query('SELECT * FROM commentaire');
