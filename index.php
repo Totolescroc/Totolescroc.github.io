@@ -19,12 +19,16 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
     $currentUsers =  getUrrentUser($user);
+    $currentUsers = array($currentUsers);
+    $id = intval($currentUsers[0][0]);
+    echo $id;
+
   
 
   foreach ($currentUsers as $currentUser) {
-    // echo "<pre>";
+    echo "<pre>";
     var_dump($currentUser);
-    // echo "</pre>";
+    echo "</pre>";
   }
 
     // var_dump($currentUser);
@@ -60,38 +64,32 @@ $user = $_SESSION['membre']["email"] ?? "";
         }
     ?>
 
+    <h3>Commentaire</h3>
 
-<?php
-// $commentaire =[ 
-//     'id_membre' => $currentUsers['id_membre'],
-//     'id_post' => $
-//     'titre' => $_POST['titre'],
-//     'date_post'=> $_POST['date_post'],
-//     'content_post' => $_POST['description'],
-//     'heure_post' => $_POST['heure_post']
-// ]
+    <form method="post">
+        <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
+        <br><br>
+		<input type="submit" value="commenter">
+    </form>
 
-
+    <?php
+    // $x = $pdo ->query('SELECT id_post FROM post');
+// while ($allid = $x-> fetch(PDO::FETCH_ASSOC)) {
+//     echo array_values(implode($allid)[0]);
+// }
 if($_POST) {
-    
-    
+
+
     // je gere les pb d'apostrophes :
     // $_POST['commentaire'] = addslashes($_POST['commentaire']);
     //j'envoie les infos dans la base de données :
 $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$currentUsers[id_membre]', '$_POST[commentaire]')");
 }
 
-$x = $pdo ->query('SELECT * FROM commentaire');
-while ($event = $x-> fetch(PDO::FETCH_ASSOC)) {
-    echo $event['content'] . '<br>';
-    
-}
-?> 
-
-<h3>Commentaire</h3>
-
-<form method="post">
-    <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
-    <br><br>
-    <input type="submit" value="commenter">
-</form>
+// $x = $pdo ->query('SELECT * FROM commentaire');
+// while ($commentaire = $x-> fetch(PDO::FETCH_ASSOC)) {
+//     echo $commentaire['content'] . '<br>';
+// }
+?>
+</body>
+</html>
