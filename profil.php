@@ -5,6 +5,8 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
+$r = $pdo->query("SELECT * FROM follow WHERE id_suiveur= $currentUsers[id_membre] AND id_suivi=$id");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

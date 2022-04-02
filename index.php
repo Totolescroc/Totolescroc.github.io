@@ -62,14 +62,15 @@ $user = $_SESSION['membre']["email"] ?? "";
             <div style="padding-top: 15px; color: #ccc; font-style: italic; text-align: right;font-size: 12px;">
             <?php
             $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$event[id_membre]'"); 
-            $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
+            $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
+
             ?> 
-            Fait par  <?php echo implode($pseudo)?> </div></div>  
+            Fait par  <?php echo $pseudo['pseudo'];;?> </div></div>  
               
                     <?php
         }
     ?>
-
+<!-- echo $pseudo['pseudo']; -->
 
 </body>
 </html>

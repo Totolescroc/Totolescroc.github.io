@@ -13,7 +13,7 @@ $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
 <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
 <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
-<div>debute à <?= $singlesingle['heure_post'] ?></div> 
+<div>debute à <?= $singlesingle['heure_post']; ?> le <?= $singlesingle['date_post']; ?></div> 
 
 
 
@@ -23,15 +23,20 @@ $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
 
-$commentaire =[ 
-    'id_membre' => $currentUsers['id_membre'],
-    'id_post' => $_GET['id_post'],
-    'content' => $_POST['commentaire']
-]
+
 ?>
 
 <?php
 if ($_POST) {
+    	// Je gère les problèmes d'apostrophes pour chaque champs grâce à une boucle :
+	foreach($_POST as $indice => $valeur) {
+		$_POST[$indice] = addslashes($valeur);
+	}
+    $commentaire =[ 
+        'id_membre' => $currentUsers['id_membre'],
+        'id_post' => $_GET['id_post'],
+        'content' => $_POST['commentaire']
+    ];
     
 $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$currentUsers[id_membre]', '$_GET[id_post]', '$_POST[commentaire]')");
 }
@@ -56,7 +61,7 @@ $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$curr
      <?php
     $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$commentaire[id_membre]'"); 
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);  
-    echo implode($pseudo);              
+    echo $pseudo['pseudo'];              
     ?>
     <div>
         <?php echo $comcom['date_com'];?> <br>
