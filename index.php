@@ -65,7 +65,7 @@ $user = $_SESSION['membre']["email"] ?? "";
             $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 
             ?> 
-            Fait par  <?php echo $pseudo['pseudo'];;?> </div></div>  
+            Fait par  <?php echo $pseudo['pseudo'];?> </div></div>  
               
                     <?php
         }
