@@ -34,6 +34,19 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
 <?php
 }
 ?>
+    <h3>mes annonces aimées: </h3>
+<?php
+    $r = $pdo->query("SELECT * FROM post WHERE id_post IN (SELECT id_post FROM reaction WHERE id_membre = $currentUsers[id_membre])");
+while ($post = $r-> fetch(PDO::FETCH_ASSOC)){
+    ?>
+    <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
+    <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $post['titre'] ?></div>
+    <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($post['content_post']); ?></div>
+    <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
+<?php
+}
+
+?>
 
 </body>
 </html>
