@@ -65,9 +65,9 @@ $user = $_SESSION['membre']["email"] ?? "";
             $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 
             ?> 
-            Fait par  <?php echo $pseudo['pseudo'];?> </div></div>  
-              
-                    <?php
+            Fait par <a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div></div>  
+ 
+            <?php
         }
     ?>
 <!-- echo $pseudo['pseudo']; -->
