@@ -14,7 +14,9 @@ $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
 <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
 <div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
-
+<form method="post">
+  <input type="submit" name="like" value="like"/>
+</form>
 
 
 <?php
@@ -27,6 +29,24 @@ $commentaire =[
     'id_membre' => $currentUsers['id_membre'],
     'id_post' => $_GET['id_post'],
 ];
+
+?>
+<?php
+if (isset($_POST['like'])){
+    $erreur = '';
+    $r = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
+	// S'il y a un ou plusieurs résultats :
+	if($r->rowCount() >= 1) {
+		$erreur .= '<p>deja aimé.</p>';
+    echo $erreur;
+    }
+    else{
+
+        $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$_GET[id_post]','$currentUsers[id_membre]', 1)");
+        $content .= '<p>je like !</p>';
+        echo $content;
+    }
+}
 ?>
 
 <?php
