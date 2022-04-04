@@ -25,6 +25,7 @@ $currentUsers = getUrrentUser($user);
 <h2>Profil de <?= $afficher_profil['pseudo'] . " " . $afficher_profil['email']; ?></h2>
 <form method="post">
   <input type="submit" name="demander" value="Ajouter en ami"/>
+  <a href="messagerie.php?id_membre=<?= $id ?>">Envoyer un message</a>
 </form>
 <?php
 if(isset($_POST['demander'])){

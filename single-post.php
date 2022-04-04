@@ -21,7 +21,7 @@ $single = $pdo ->query("SELECT * FROM post WHERE id_post = '$_GET[id_post]'");
 $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 // echo implode($singlesingle);
 
-$get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$singlesingle[id_membre]'"); 
+$get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$singlesingle[id_membre]'"); 
 $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 // fonctionne mais il faut rafraichir la page pour voir +1 like
 $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
@@ -30,12 +30,15 @@ $like = $get_like ->fetch(PDO::FETCH_ASSOC);
 
 <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
 <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
-<div><a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo implode($pseudo);?> </a></div>
+<div><a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div>
+<img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+
 <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
 <div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
-<div>nombre de like : <?php echo implode($like);?></div>
+
+<!-- <input>nombre de like : </div> -->
 <form method="post">
-  <input type="submit" name="like" value="like"/>
+  <input type="submit" name="like" value="like <?php echo implode($like);?>"/>
 </form>
 </div>
 
@@ -83,12 +86,14 @@ if (isset($_POST["commenter"])) {
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
         // var_dump($comcom); 
     
-    $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$comcom[id_membre]'"); 
+    $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$comcom[id_membre]'"); 
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
     ?> 
-    <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo implode($pseudo)?> </a></div></div> 
+    <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a></div></div> 
             
     <div>
+        <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+
         <?php echo $comcom['date_com'];?> <br>
     </div>
     <div>

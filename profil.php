@@ -5,6 +5,10 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
+
+//afficher le nb d'abo
+$getFollow = $pdo->query("SELECT COUNT(id_follow) FROM follow WHERE id_suivi = $currentUsers[id_membre]");
+$follow = $getFollow -> fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +24,9 @@ $currentUsers =  getUrrentUser($user);
     <ul>
         <li>Votre id est : <?= $currentUsers['id_membre'] ?></li>
         <li>Votre mail est : <?= $currentUsers['email'] ?></li>
+        <li>Nombre d'abonnés : <?php echo implode($follow);?></li>
     </ul>
+    <?php include("upload_img.php");?>
     <h3>Mes annonces:</h3>
 
 <?php
