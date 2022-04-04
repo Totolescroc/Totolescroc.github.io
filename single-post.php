@@ -13,8 +13,10 @@ $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
 <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
 <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
-<div>debute à <?= $singlesingle['heure_post'] ?></div> 
-
+<div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
+<form method="post">
+  <input type="submit" name="like" value="like"/>
+</form>
 
 
 <?php
@@ -26,14 +28,34 @@ $currentUsers =  getUrrentUser($user);
 $commentaire =[ 
     'id_membre' => $currentUsers['id_membre'],
     'id_post' => $_GET['id_post'],
-    'content' => $_POST['commentaire']
-]
+];
+
+?>
+<?php
+if (isset($_POST['like'])){
+    $erreur = '';
+    $r = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
+	// S'il y a un ou plusieurs résultats :
+	if($r->rowCount() >= 1) {
+		$erreur .= '<p>deja aimé.</p>';
+    echo $erreur;
+    }
+    else{
+
+        $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$_GET[id_post]','$currentUsers[id_membre]', 1)");
+        $content .= '<p>je like !</p>';
+        echo $content;
+    }
+}
 ?>
 
 <?php
-if ($_POST) {
-    
-$pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$currentUsers[id_membre]', '$_GET[id_post]', '$_POST[commentaire]')");
+if (isset($_POST["commenter"])) {
+    	// Je gère les problèmes d'apostrophes pour chaque champs grâce à une boucle :
+	foreach($_POST as $indice => $valeur) {
+		$_POST[$indice] = addslashes($valeur);
+	}
+    $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$currentUsers[id_membre]', '$_GET[id_post]', '$_POST[commentaire]')");
 }
 ?>
 
@@ -43,7 +65,7 @@ $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$curr
 <form method="post">
     <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
     <br><br>
-    <input type="submit" value="commenter">
+    <input type="submit" name="commenter" value="commenter">
 </form>
 </div>
 
@@ -53,18 +75,18 @@ $pdo->exec("INSERT INTO commentaire (id_membre, id_post, content) VALUES ('$curr
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
         // var_dump($comcom); 
     ?>
-    
+     <?php
+    $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$commentaire[id_membre]'"); 
+    $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);  
+    echo implode($pseudo);              
+    ?>
     <div>
         <?php echo $comcom['date_com'];?> <br>
     </div>
     <div>
         <?php echo $comcom['content'];?> <br><br>
     </div>
-    <?php
-    $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$commentaire[id_membre]'"); 
-    $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);  
-    echo implode($pseudo);              
-    ?>
+
         
     <?php
         }

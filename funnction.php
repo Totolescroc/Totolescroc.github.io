@@ -9,6 +9,12 @@ function getUrrentUser(string $mail){
     return $currentUser->fetch();
 }
 
+function getAllUser(string $mail){
+global $pdo;
+$allUser = $pdo->query("SELECT * FROM membre WHERE email != '$mail'");
+$allUser->execute();
+return $allUser->fetchall();
+}
 
 // recuperation de tout les postes
 function getAllPosts(){
