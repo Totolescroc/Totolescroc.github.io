@@ -3,6 +3,7 @@ include('init.php');
 include('header.php');
 
 
+
 // Si la session membre existe, alors je redirige vers l'accueil :
 if(isset($_SESSION['membre'])) {
 	header('location:index.php');

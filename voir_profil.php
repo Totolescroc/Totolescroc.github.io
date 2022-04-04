@@ -25,10 +25,8 @@ $currentUsers = getUrrentUser($user);
 <h2>Profil de <?= $afficher_profil['pseudo'] . " " . $afficher_profil['email']; ?></h2>
 <form method="post">
   <input type="submit" name="demander" value="Ajouter en ami"/>
+  <a href="messagerie.php?id_membre=<?= $id ?>">Envoyer un message</a>
 </form>
-</body>
-</html>
-
 <?php
 if(isset($_POST['demander'])){
     $erreur = '';
@@ -46,8 +44,22 @@ if(isset($_POST['demander'])){
     echo $content;
   }
 }
- 
-
-  
-
 ?>
+<h3>Ses annonces:</h3>
+
+<?php
+// affiche les post de l'id du profil consulté
+$r = $pdo->query("SELECT * FROM post WHERE id_membre= $id");
+while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
+    ?>
+    <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
+    <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $post['titre'] ?></div>
+    <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($post['content_post']); ?></div>
+    <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
+<?php
+}
+?>
+</body>
+</html>
+
+
