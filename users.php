@@ -4,7 +4,7 @@ include('header.php');
 
 $user = $_SESSION['membre']["email"] ?? "";
 
-$allusers =  getUsers($user);
+$allusers =  getAllUser($user);
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +19,8 @@ $allusers =  getUsers($user);
   <div>Utilisateurs</div>
   <table>
    <tr>
-    <th>Nom</th>
-    <th>Prénom</th>
+    <th>Pseudo</th>
+    <th>Email</th>
     <th>Voir le profil</th>
    </tr>
    <?php

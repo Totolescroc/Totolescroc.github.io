@@ -19,7 +19,6 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
     $currentUsers =  getUrrentUser($user);
-    $currentUsers = array($currentUsers);
 
   
 
@@ -37,6 +36,12 @@ $user = $_SESSION['membre']["email"] ?? "";
 
         <h1>Bonjour <?php echo $_SESSION['membre']['pseudo'];?> !</h1>
     <?php
+        $get_image = $pdo ->query("SELECT photo_profil FROM membre WHERE id_membre = '$currentUsers[id_membre]'"); 
+        $image = $get_image-> fetch(PDO::FETCH_ASSOC);
+    ?>
+        <img src="<?php echo $image['photo_profil'] ?>" alt="" width="200px">
+
+    <?php
         } else {
     ?>
         
@@ -51,7 +56,7 @@ $user = $_SESSION['membre']["email"] ?? "";
     ?>
     <?php
     //affiche les event stockés dans la table post
-        $r = $pdo ->query('SELECT * FROM post');
+        $r = $pdo ->query('SELECT * FROM post WHERE date_post>= CURDATE() ORDER BY date_post ASC');
         while ($event = $r-> fetch(PDO::FETCH_ASSOC)) {
 ?>
             <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
@@ -61,15 +66,18 @@ $user = $_SESSION['membre']["email"] ?? "";
                   
             <div style="padding-top: 15px; color: #ccc; font-style: italic; text-align: right;font-size: 12px;">
             <?php
-            $get_pseudo = $pdo ->query("SELECT pseudo FROM membre WHERE id_membre = '$event[id_membre]'"); 
-            $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
+            $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$event[id_membre]'"); 
+            $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
+
             ?> 
-            Fait par  <?php echo implode($pseudo)?> </div></div>  
-              
-                    <?php
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+
+            Fait par <a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div></div>  
+ 
+            <?php
         }
     ?>
-
+<!-- echo $pseudo['pseudo']; -->
 
 </body>
 </html>

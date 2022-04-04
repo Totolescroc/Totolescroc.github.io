@@ -3,6 +3,7 @@ include('init.php');
 include('header.php');
 
 
+
 // Si la session membre existe, alors je redirige vers l'accueil :
 if(isset($_SESSION['membre'])) {
 	header('location:index.php');
@@ -47,6 +48,8 @@ if($_POST) {
 		$pdo->exec("INSERT INTO membre (pseudo, email, mdp) VALUES ('$_POST[pseudo]', '$_POST[email]', '$_POST[mdp]')");
 		// J'ajoute un message de validation :
 		$content .= '<p>Inscription validée !</p>';
+
+		header('location:connexion.php');
 	}
 
 	// J'ajoute le contenu de $erreur à l'interieur de $content :
