@@ -47,6 +47,8 @@ $user = $_SESSION['membre']["email"] ?? "";
         
     <a href="inscription.php">inscription</a>
 
+    <a href="mdp-oublie.php">mot de passe oublié</a>
+
     -
 
     <a href="connexion.php">connexion</a>
@@ -68,12 +70,13 @@ $user = $_SESSION['membre']["email"] ?? "";
             <?php
             $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$event[id_membre]'"); 
             $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
-
+            $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$event[id_cat]'"); 
+            $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
             ?> 
             <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
-            Fait par <a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div></div>  
- 
+            Fait par <a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a><?php  echo $cat['name_cat']; ?>
+</div></div>  
             <?php
         }
     ?>

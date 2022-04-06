@@ -39,6 +39,9 @@ if ($_POST) {
 
 
 
+// var_dump($_POST);
+// var_dump($_GET['id_membre']);
+// die;
 $r = $pdo->query("SELECT * FROM messagerie WHERE id_from = '$currentUsers[id_membre]' AND id_to = '$_GET[id_membre]' OR id_from = '$_GET[id_membre]' AND id_to = '$currentUsers[id_membre]'");
 while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 	if ($messagerie['id_from'] == $currentUsers['id_membre']) {
@@ -52,6 +55,7 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 	} elseif ($messagerie['id_from'] == $_GET['id_membre']) {
 		$get_pseudo_receveur = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$_GET[id_membre]'"); 
 		$pseudo_receveur = $get_pseudo_receveur-> fetch(PDO::FETCH_ASSOC);
+
 	?>
 				<p><?php echo $pseudo_receveur['pseudo']; ?></p>
 

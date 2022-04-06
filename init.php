@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //je me co à la base de donnée
 
 $pdo = new PDO('mysql:host=localhost;dbname=social_network', 'root', '', array(PDO::ATTR_ERRMODE =>
@@ -9,7 +9,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=social_network', 'root', '', array(P
 //var_dump($pdo);
 
 //j'ouvre une session temporaire:
-session_start();
+
 
 //s'il y a une action dans l'url et si cette action est = à deconnexion, alors je détruis la session:
 if(isset($_GET['action']) && $_GET['action'] =='deconnexion') {

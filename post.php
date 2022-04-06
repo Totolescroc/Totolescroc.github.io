@@ -26,6 +26,18 @@ if (!$currentUsers) {
 
     <?php echo $content;?>
     <form method="post">
+
+        <?php 
+        ?>
+        <select name="cat" id="cat" required>
+            <?php
+            $get_cat = $pdo ->query('SELECT * FROM categorie');
+        while ($cat = $get_cat-> fetch(PDO::FETCH_ASSOC)) {
+        ?>
+            <option value="<?php echo $cat['id_cat'];?>"><?php echo $cat['name_cat'];?></option>
+            <?php } ?>
+        </select>
+        
         <label for="titre">Titre de l'annonce</label>
         <br></br>
         <input type="text" name="titre" id="titre" required>
@@ -47,9 +59,10 @@ $post =[
     'id_membre' => $currentUsers['id_membre'],
     'titre' => $_POST['titre'],
     'date_post'=> $_POST['date_post'],
-    'content_post' => $_POST['description']
+    'content_post' => $_POST['description'],
+    'id_cat'=> $_POST['cat']
 ];
-        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]')");
+        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post, id_cat) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]','$_POST[cat]')");
 
     }
     ?>

@@ -26,14 +26,18 @@ $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 // fonctionne mais il faut rafraichir la page pour voir +1 like
 $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
 $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+$get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$singlesingle[id_cat]'"); 
+$cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
 ?>
 
 <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-<div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
+<div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre']; ?> <?php echo $cat['name_cat'];?>
+</div>
 <div><a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div>
 <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
 <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
+
 <div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
 
 <!-- <input>nombre de like : </div> -->
