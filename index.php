@@ -47,6 +47,8 @@ $user = $_SESSION['membre']["email"] ?? "";
         
     <a href="inscription.php">inscription</a>
 
+    <a href="mdp-oublie.php">mot de passe oublié</a>
+
     -
 
     <a href="connexion.php">connexion</a>

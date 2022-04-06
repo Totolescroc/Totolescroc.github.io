@@ -8,7 +8,8 @@ include('header.php');
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
-
+var_dump($user);
+var_dump($currentUsers);
 $commentaire =[ 
     'id_membre' => $currentUsers['id_membre'],
     'id_post' => $_GET['id_post'],
@@ -84,7 +85,7 @@ if (isset($_POST["commenter"])) {
     <?php
         $com = $pdo ->query("SELECT * FROM commentaire WHERE id_post = '$_GET[id_post]'"); 
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
-        // var_dump($comcom); 
+        var_dump($comcom); 
     
     $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$comcom[id_membre]'"); 
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
