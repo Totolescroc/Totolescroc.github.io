@@ -25,6 +25,9 @@ $currentUsers =  getUrrentUser($user);
 <?php
 
 if ($_POST) {
+	foreach($_POST as $indice => $valeur) {
+		$_POST[$indice] = addslashes($valeur);
+	}
 		$messagerie = [
 			'id_from' => $currentUsers['id_membre'],
 			'id_to' => $_GET['id_membre'],
