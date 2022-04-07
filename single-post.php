@@ -24,6 +24,7 @@ $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$singlesingle[id_membre]'"); 
 $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 // fonctionne mais il faut rafraichir la page pour voir +1 like
+
 $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
 $like = $get_like ->fetch(PDO::FETCH_ASSOC);
 $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$singlesingle[id_cat]'"); 
@@ -44,6 +45,8 @@ if (isset($_POST['like'])){
         $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$_GET[id_post]','$currentUsers[id_membre]', 1)");
         $content .= '<p>je like !</p>';
         echo $content;
+        $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
+        $like = $get_like ->fetch(PDO::FETCH_ASSOC);
     }
 }
 ?>
@@ -96,7 +99,7 @@ if (isset($_POST["commenter"])) {
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
     ?> 
     <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a></div></div> 
-            
+
     <div>
         <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 

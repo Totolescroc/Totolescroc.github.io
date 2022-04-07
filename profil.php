@@ -51,7 +51,27 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)){
     <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
 <?php
 }
+?>
+<h3>mes abonnements</h3>
+<?php
+//affiche les personnes que je suis
+$get_mesfollows = $pdo->query("SELECT id_membre, pseudo, photo_profil FROM membre WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
+while ($mesfollows = $get_mesfollows-> fetch(PDO::FETCH_ASSOC)){?>
+    <a href="voir_profil.php?id_membre=<?= $mesfollows['id_membre'] ?>"><?php echo $mesfollows['pseudo'];?></a>
+    <img src="<?php echo $mesfollows['photo_profil'] ?>" alt="" width="200px">
+    <?php
+};
+?>
 
+<h3>mes followers</h3>
+<?php
+//affiche les personnes qui me suivent  
+$get_suiveur = $pdo->query("SELECT id_membre, pseudo, photo_profil FROM membre WHERE id_membre IN (SELECT id_suiveur FROM follow WHERE id_suivi = $currentUsers[id_membre])");
+while ($suiveur = $get_suiveur-> fetch(PDO::FETCH_ASSOC)){?>
+    <a href="voir_profil.php?id_membre=<?= $suiveur['id_membre'] ?>"><?php echo $suiveur['pseudo'];?></a>
+    <img src="<?php echo $suiveur['photo_profil'] ?>" alt="" width="200px">
+    <?php
+};
 ?>
 
 </body>

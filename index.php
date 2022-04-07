@@ -56,7 +56,7 @@ $user = $_SESSION['membre']["email"] ?? "";
     <?php
        }
     ?>
-    <h3> Les posts de tes amis:</h3>
+    <h3> Les posts des gens que tu follow:</h3>
     <?php
     $x = $pdo->query("SELECT * FROM post WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
 while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
