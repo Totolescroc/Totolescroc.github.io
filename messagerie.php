@@ -5,6 +5,9 @@ $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
 
+if (!$currentUsers) {
+    header("location:index.php");
+}
 
 
 ?>

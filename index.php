@@ -20,7 +20,7 @@ $user = $_SESSION['membre']["email"] ?? "";
 
     $currentUsers =  getUrrentUser($user);
 
-  
+
 
 //   foreach ($currentUsers as $currentUser) {
 //     echo "<pre>";
@@ -44,7 +44,7 @@ $user = $_SESSION['membre']["email"] ?? "";
     <?php
         } else {
     ?>
-        
+
     <a href="inscription.php">inscription</a>
 
     <a href="mdp-oublie.php">mot de passe oublié</a>
@@ -56,8 +56,12 @@ $user = $_SESSION['membre']["email"] ?? "";
     <?php
        }
     ?>
-    <h3> Les posts des gens que tu follow:</h3>
+    
     <?php
+    if (isset($currentUsers['id_membre'])){?>
+     
+        <h3> Les posts des gens que tu follow:</h3>
+        <?php
     $x = $pdo->query("SELECT * FROM post WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
 while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
     ?>
@@ -77,7 +81,7 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             Fait par <a href="voir_profil.php?id_membre=<?= $post['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a><?php  echo $cat['name_cat']; ?>
 </div></div>  
 <?php
-}
+} }
 
 ?>
  <h3> Tous les posts:</h3>
@@ -91,7 +95,7 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $event['titre'] ?></div>
             <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($event['content_post']); ?></div>
             <a href="single-post.php?id_post=<?= $event['id_post'] ?>">Voir plus</a> 
-                  
+
             <div style="padding-top: 15px; color: #ccc; font-style: italic; text-align: right;font-size: 12px;">
             <?php
             $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$event[id_membre]'"); 

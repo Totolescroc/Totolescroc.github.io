@@ -6,6 +6,11 @@ $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
 
+if (!$currentUsers) {
+    header("location:index.php");
+}
+
+
 //afficher le nb d'abo
 $getFollow = $pdo->query("SELECT COUNT(id_follow) FROM follow WHERE id_suivi = $currentUsers[id_membre]");
 $follow = $getFollow -> fetch(PDO::FETCH_ASSOC);

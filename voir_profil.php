@@ -11,6 +11,11 @@ $afficher_profil = $afficher_profil->fetch();
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers = getUrrentUser($user);
+
+if (!$currentUsers) {
+  header("location:index.php");
+}
+
 ?>
 
 <!DOCTYPE html>

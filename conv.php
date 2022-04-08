@@ -6,6 +6,10 @@ $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
 
+if (!$currentUsers) {
+    header("location:index.php");
+}
+
 
 $get_receveur = $pdo ->query("SELECT DISTINCT(id_to) FROM messagerie WHERE id_from = '$currentUsers[id_membre]'");
 while ($receveur = $get_receveur-> fetch(PDO::FETCH_ASSOC)) {

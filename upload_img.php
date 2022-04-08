@@ -9,6 +9,7 @@ define("RACINE_SITE", '/social-network/');
 
 //VARIABLE : 
 
+
 $content = "";
 
 /************************************************************
@@ -67,15 +68,18 @@ if (!empty($_POST)) {
 					) {
 						// On renomme le fichier
 						$nomImage = "photo-profil" . $currentUsers['id_membre'] . "." . $extension/*Donner un nom aux fichiers (par exemple un random)*/;
-						
+						$postImage = "post-image" . $currentUsers['id_membre'] . "_" . "id_post" . $id_post['id_post'] . "." . $extension;
 						// Si c'est OK, on teste l'upload
 						if (move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET . $nomImage)) {
 
 							// L'image est uploadé
 							$x = "./upload/" . $nomImage;
 
-
 							$pdo->exec("UPDATE membre SET photo_profil = '$x' WHERE id_membre = '$currentUsers[id_membre]'");
+
+						} else if (move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET . $postImage)) {
+							$y = "./upload/" . $postImage;
+							$pdo->exec("UPDATE post SET photo_post = '$y' WHERE id_post = '$id_post[id_post]'");
 
 						} else {
 							// Sinon on affiche une erreur systeme
@@ -104,6 +108,8 @@ if (!empty($_POST)) {
 }
 
 
+
+
 if (!empty($message)) {
 	echo '<p>', "\n";
 	echo "\t\t<strong>", htmlspecialchars($message), "</strong>\n";
@@ -120,10 +126,14 @@ if (!empty($message)) {
     $get_image = $pdo ->query("SELECT photo_profil FROM membre WHERE id_membre = '$currentUsers[id_membre]'"); 
     $image = $get_image-> fetch(PDO::FETCH_ASSOC);
 
+	$get_id_post = $pdo ->query("SELECT * FROM post WHERE id_post = '$id_post[id_post]'");
+	$id_post = $get_id_post ->fetch(PDO::FETCH_ASSOC);
+
 
 ?>
 
 
 
 <img src="<?php echo $image['photo_profil'] ?>" alt="" width="200px">
+<img src="<?php echo $id_post['photo_post'] ?>" alt="" width="200px">
 
