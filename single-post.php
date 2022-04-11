@@ -33,22 +33,22 @@ $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
 ?>
 <?php
 if (isset($_POST['like'])){
-    $erreur = '';
     $r = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
 	// S'il y a un ou plusieurs résultats :
 	if($r->rowCount() >= 1) {
-		$erreur .= '<p>deja aimé.</p>';
-    echo $erreur;
+        $pdo->exec("DELETE FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
+        $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
+        $like = $get_like ->fetch(PDO::FETCH_ASSOC);
     }
     else{
 
         $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$_GET[id_post]','$currentUsers[id_membre]', 1)");
-        $content .= '<p>je like !</p>';
-        echo $content;
         $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
         $like = $get_like ->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+
 ?>
 
 <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">

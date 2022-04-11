@@ -73,13 +73,33 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             <?php
             $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$post[id_membre]'"); 
             $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
+            $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+            $like = $get_like ->fetch(PDO::FETCH_ASSOC);
             $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$post[id_cat]'"); 
             $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
+            if (isset($_POST[$post['id_post']])){
+                $w = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $post[id_post]");
+                // S'il y a un ou plusieurs résultats :
+                if($w->rowCount() >= 1) {
+                    $pdo->exec("DELETE FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $post[id_post]");
+                    $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+                    $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+                }
+                else{
+            
+                    $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$post[id_post]','$currentUsers[id_membre]', 1)");
+                    $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+                    $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+                }
+            }var_dump($like);
             ?> 
             <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
             Fait par <a href="voir_profil.php?id_membre=<?= $post['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a><?php  echo $cat['name_cat']; ?>
-</div></div>  
+</div></div> 
+<form method="post">
+  <input type="submit" name= "<?php echo $post['id_post']?>" value="like <?php echo implode($like);?>"/>
+</form> 
 <?php
 } }
 
@@ -95,18 +115,37 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $event['titre'] ?></div>
             <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($event['content_post']); ?></div>
             <a href="single-post.php?id_post=<?= $event['id_post'] ?>">Voir plus</a> 
-
             <div style="padding-top: 15px; color: #ccc; font-style: italic; text-align: right;font-size: 12px;">
             <?php
-            $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$event[id_membre]'"); 
+            $get_like2 = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+            $like2 = $get_like2 ->fetch(PDO::FETCH_ASSOC);
+            $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$post[id_membre]'"); 
             $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
-            $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$event[id_cat]'"); 
+            $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$post[id_cat]'"); 
             $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
+            if (isset($_POST[$event['id_post']])){
+                $z = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $post[id_post]");
+                // S'il y a un ou plusieurs résultats :
+                if($z->rowCount() >= 1) {
+                    $pdo->exec("DELETE FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $post[id_post]");
+                    $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+                    $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+                }
+                else{
+            
+                    $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$post[id_post]','$currentUsers[id_membre]', 1)");
+                    $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+                    $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+                }
+            }var_dump($like);
             ?> 
             <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
             Fait par <a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a><?php  echo $cat['name_cat']; ?>
 </div></div>  
+<form method="post">
+  <input type="submit" name= "<?php echo $post['id_post']?>" value="like <?php echo implode($like2);?>"/>
+</form>
             <?php
         }
     ?>

@@ -52,7 +52,6 @@ if (!$currentUsers) {
         <br></br>
         <input type="submit" value="Poster">
     </form>
-    <?php include("upload_img.php");?>
 
     <?php 
     if ($_POST) {
@@ -64,7 +63,7 @@ $post =[
     'content_post' => $_POST['description'],
     'id_cat'=> $_POST['cat'],
 ];
-        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post, id_cat, photo_post) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]','$_POST[cat]')");
+        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post, id_cat) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]','$_POST[cat]')");
 
     }
     ?>
