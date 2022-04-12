@@ -1,0 +1,643 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    background: none;
+}
+body, section{
+    overflow-x: hidden;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul, li {
+	list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button, input{
+    margin: 0px;
+    padding: 0px;
+    border: none; 
+    cursor: pointer;
+    background: none;
+}
+
+button:focus, input{
+    outline: none;   
+}
+
+
+/*fin css reset*/
+
+/*menu principal*/
+
+.menu-principal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0px;
+    border-top: 1px solid rgb(232, 232, 232);
+    background-color: #fff;
+    z-index: 100;
+    position: fixed;
+}
+
+.menu-principal ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu-principal ul{
+    margin:10px 30px 0px 30px;
+    padding-bottom: 30px;
+    gap: 30px;
+}
+
+.menu-principal a{
+    position: relative;
+    display: inline;
+}
+
+.menu-principal li{
+    display: block;
+    width:100%;
+    height: 100%;
+}
+
+.menu-principal img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*fin menu principal*/
+
+/*bouton retour*/
+
+.back{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin: 30px 0px 10px 10px;
+}
+
+/*fin bouton retour*/
+
+/*message épinglé*/
+
+.template-message-epingle{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.auteur, .auteur-horaire, .message-reagir-repondre{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auteur{
+    height: 30px;
+}
+
+.auteur img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.auteur-horaire{
+    justify-content: space-between;
+    padding: 10px ;
+}
+
+.message-reagir-repondre{
+    justify-content: space-around;
+    
+}
+
+.message{
+    margin: 10px;
+}
+
+.message{
+    padding: 0px 0px 10px 0px;
+    border-bottom: 1px solid rgb(232, 232, 232);
+}
+
+/*fin message épinglé*/
+
+/*retour*/
+
+.back{
+    position: relative;
+}
+
+.back h1{
+    position: absolute;
+    width: 100%;
+    padding: 0;
+}
+
+/*fin retour*/
+
+/*annonce resume*/
+
+.annonce-resume{
+    margin: 10px 30px 10px 30px;
+}
+
+.resume-horaire-lieu{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.resume-horaire-lieu{
+    margin: 10px 30px 10px 0px;
+}
+
+.resume-horaire-lieu img{
+    max-height: 20px;
+    max-width: 20px;
+}
+
+.resume-participer{
+    min-width:80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+    background-color: blanchedalmond;
+}
+
+.resume-button{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.resume-participant-avatar{
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin: 10px 30px 10px 0px;
+}
+
+.resume-participant{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+    height: 30px;
+    bottom: 5px;
+    right: 5px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.resume-participant-total{
+    display: flex;
+    margin: 10px 30px 10px 0px;
+}
+/*fin annonce resume*/
+
+body{
+    /* padding-bottom: 400px; */
+}
+
+.body-parcourir{
+    margin-bottom: 80px;
+} 
+
+.body-commentaire, .body-annonce{
+    margin-bottom: 60px;
+}
+
+h1{
+    text-align: center;
+    width: calc(100%-2rem);
+    padding: 2rem 1rem 2rem 1rem;
+}
+
+.parcourir-rechercher, .type-participation{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    height: 60px;
+    top: 30px;
+}
+
+.parcourir-rechercher ul, .type-participation ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.parcourir-rechercher li, .type-participation li{
+    padding: 10px 60px 10px 60px;
+}
+
+.page-parcourir-rechercher{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.page-parcourir, .page-rechercher {
+    width: 96%;
+    margin:0px;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
+    padding: 2%;
+}
+
+.parcourir, .je-participe{
+    border-bottom: 1px solid black;
+}
+
+.container-card-annonce{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-annonce{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 46%;
+    margin: 1%;
+    border: 1px solid black; 
+    border-radius: 1rem;  
+}
+
+.card-annonce-image-participant{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    contain: content;
+}
+
+.card-annonce-image-participant img{
+    max-width: 100%;
+    max-height: 100%;  
+}
+
+.card-annonce-titre{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.participant{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: orange;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.container-form{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.recherche{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    padding: 0% 20% 10% 20%;
+}
+
+.recherche input, .recherche button{
+    border-radius: 1rem;
+    border: inherit;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
+
+
+.recherche button{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 320px;
+}
+
+.recherche img{
+    width: 15px;
+}
+
+
+.page-parcourir{
+    display: none;
+}
+
+.annonce-couverture{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    justify-content: center;
+}
+
+.annonce-couverture img, .organisateur img{
+    max-width: 100%;
+    min-height: 100%;
+}
+
+.horaire-lieu, .horaire, .lieu{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.horaire-lieu{
+    margin: 5px 0px 30px 30px;
+}
+
+.horaire-lieu img{
+    max-height: 20px;
+    max-width: 20px;
+}
+
+.horaire, .lieu{
+    flex-direction: row;
+    align-items: center;
+}
+
+.organisateur{
+    height:40px;
+    display: flex;
+    margin: 5px 0px 5px 30px;
+    gap: 10px;
+}
+
+.organisateur img{
+    border-radius: 10px;
+}
+
+.titre-evenement{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin: 10px 60px 10px 60px;
+    text-align: center;
+}
+
+.participer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 10px;
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+    background-color: blanchedalmond;
+    margin: 2rem 1rem 2rem 1rem;
+}
+
+.reponse{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.rep, .rep-participe, .rep-peut-etre, .rep-interesse{
+    border: 1px solid black;
+}
+
+.rep{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+.rep-participe, .rep-peut-etre, .rep-interesse{
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    text-align: center;    
+}
+
+.participant-total{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+}
+
+.participant-total p, .participant-avatar{
+    margin: 0px 0px 0px 60px;
+}
+
+.participant-avatar{
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.avatar{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 2px solid white;
+}
+
+.avatar1{
+    left:0px;
+}
+
+.avatar2{
+    left:25px;
+}
+
+.avatar3{
+    left:50px;
+}
+
+.avatar img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.annonce-commentaire{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid black;
+}
+
+.annonce-commentaire-perso{
+    width: 400px;
+    height: 30px;
+    display: flex;  
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.annonce-commentaire-perso img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.photo-utilisateur{
+    border-radius: 20px;
+}
+
+.annonce-commentaire-perso input{
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+}
+
+.annonce-commentaire-perso button{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.annonce-participer, .page-commentaire-rep{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    display: flex;
+    justify-content: center;
+}
+
+.page-commentaire-rep{
+    padding: 10px 10px 10px 10px;
+}
+
+.annonce-participer-cta{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 10px 10px 10px;
+}
+
+.annonce-participer-cta button{
+    margin: 0;
+}
+
+.message{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.message-like{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    max-width: 30px;
+}
+
+.message-like img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.message-recent-rep{
+    position: absolute;
+    bottom: -5px;
+    background-color: white;
+    padding-right: 5px;
+    font-weight: 400;
+}
+
+.dernier-commentaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+

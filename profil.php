@@ -45,6 +45,10 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
 <?php
 }
 ?>
+
+<!-- #################
+a modifier en juste mes annonces 
+################# -->
     <h3>mes annonces aimées: </h3>
 <?php
     $r = $pdo->query("SELECT * FROM post WHERE id_post IN (SELECT id_post FROM reaction WHERE id_membre = $currentUsers[id_membre])");

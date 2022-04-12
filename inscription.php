@@ -1,6 +1,5 @@
 <?php
 include('init.php');
-include('header.php');
 
 
 
@@ -75,17 +74,19 @@ if($_POST) {
      <h1>Insription</h1>
 
      <p>Veuillez rentrer les champs ci dessous</p>
-     <form method="post">
-			<label for="pseudo">pseudo</label>
-			<input type="text" name="pseudo" id="pseudo" required>
-			<br><br>
-			<label for="email">Adresse mail</label>
-			<input type="email" name="email" id="email" required>
-			<br><br>
-			<label for="mdp">Mot de passe</label>
-			<input type="password" name="mdp" id="mdp" required>
-			<br><br>
-			<input type="submit" value="S'inscrire">
+	 <div class="inscription-form">
+	 	<form method="post">
+				<label for="pseudo">pseudo</label>
+				<input type="text" name="pseudo" id="pseudo" required>
+				<br><br>
+				<label for="email">Adresse mail</label>
+				<input type="email" name="email" id="email" required>
+				<br><br>
+				<label for="mdp">Mot de passe</label>
+				<input type="password" name="mdp" id="mdp" required>
+				<br><br>
+				<input type="submit" value="S'inscrire">
 		</form>
+	 </div>
  </body>
  </html>

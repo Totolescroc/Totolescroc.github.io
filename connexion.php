@@ -1,6 +1,6 @@
 <?php
-include('init.php');
-include('header.php');
+require ("funnction.php");
+
 
 
 //si la session membre existe alors je redirige vers l 'acceuil:
@@ -52,14 +52,14 @@ if($_POST) {
 </head>
 <body>
     <?php echo $content;?>
-    <form method="post">
-        <label for="email">Adresse mail</label>
-        <input type="email" name="email" id="email" required>
-        <br></br>
-        <label for="mdp">Mot de passe</label>
-        <input type="password" name="mdp" id="mdp" required>
-        <br></br>
-        <input type="submit" value="Se connecter">
-    </form>
+    <div class="connexion-form">
+        <form method="post">
+            <label for="email">Adresse mail</label>
+            <input type="email" name="email" id="email" placeholder="email" required>
+            <label for="mdp">Mot de passe</label>
+            <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
+            <input type="submit" value="Se connecter">
+        </form>
+    </div>
 </body>
 </html>
