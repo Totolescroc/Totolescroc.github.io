@@ -24,7 +24,7 @@ $allusers =  getAllUser($user);
   
  <form action="" method="post">
  <input type="text" name="rechercher" id="rechercher" placeholder="rechercher" required>
- <input type="submit" value="rechercher">
+ <input type="submit" class="button" value="rechercher">
  </form>
 
 <?php 
@@ -113,7 +113,7 @@ while ($cat = $get_cat-> fetch(PDO::FETCH_ASSOC)) {
     <option value="<?php echo $cat['id_cat'];?>"><?php echo $cat['name_cat'];?></option>
     <?php } ?>
 </select>
-<input type="submit" value="poster">
+<input type="submit" class="button" value="poster">
 </form>
 
 

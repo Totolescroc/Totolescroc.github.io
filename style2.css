@@ -64,12 +64,34 @@ button:focus, input{
 
 
 /*fin css reset*/
-
-h1, h3 {
+body {
+    color: #1E1A1B ;
+    font-size: 12px;
+    background-color: #f7f7f7;
+}
+h1, h2, h3 {
 	text-align: center;
 	margin: 30px;
 }
 
+h1 {
+    font-size: 36px;
+    color: #1E1A1B;
+}
+
+h2 {
+    font-size: 24px;
+    color: #EA9656;
+}
+
+h3 {
+    color: #1E1A1B;
+    font-size: 16px;
+}
+
+body {
+	margin-bottom: 100px;
+}
 
 /* Annonces */
 .card-annonce-container {
@@ -77,6 +99,7 @@ h1, h3 {
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+    width: 100%;
 }
 
 
@@ -86,15 +109,19 @@ h1, h3 {
     flex-direction: column;
 	justify-content: center;
 	align-items: center;
-    width: 40%;
-    margin: 1%;
+    width: 100%;
+    margin-block: 2%;
 	padding: 3%;
-    border: 1px solid black; 
-    border-radius: 1rem;  
+    border: 1px solid #BEC5D6; 
+    background-color: #fff;
 }
 .card-annonce-titre{
-    padding: 10px;
+    font-size: 16px;
+    color:#EA9656;
 	font-weight: bolder;
+	width: 100%;
+	text-align: center;
+    margin-bottom: 20px;
 }
 
 .card-annonce img {
@@ -103,26 +130,50 @@ h1, h3 {
 	border-radius: 50%;
 }
 
+.card-annonce form {
+    margin-top: 20px;
+}
+
 .auteur {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 10px;
+}
+.card-cat{
+    color: #1E1A1B;
+    font-weight: 800;
+    font-size: 12px;
+    height: fit-content;
 }
 
+.card-annonce .button{
+    padding-inline: 20px;
+    padding-inline: 150%;
+}
+
+.cat-auteur {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    /* margin-bottom: 10px; */
+    width: 100%;
+    gap: 10px;
+}
 /* Fin annonces */
 
 /* ######################## */
 
 /* Pages connexion  */
 
-.connexion-form input {
-	background-color: whitesmoke;
-	border: solid 1px black;
-	padding: 5px;
-	border-radius: 5% 5% 5% 5%;
-}
 
+.connexion-form input {
+    border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
 .connexion-form form {
 	display: flex;
 	flex-direction: column;
@@ -144,10 +195,11 @@ h1, h3 {
 /* Page inscription */
 
 .inscription-form input {
-	background-color: whitesmoke;
-	border: solid 1px black;
-	padding: 5px;
-	border-radius: 5% 5% 5% 5%;
+    border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
 }
 
 .inscription-form form {
@@ -162,4 +214,151 @@ h1, h3 {
 .inscription-form form {
 	font-weight: bolder;
 	font-size: large;
+}
+
+
+.menu-connexion {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 50px	;
+	align-items: center;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	height: 100vh;
+
+}
+
+/* bouton deco */
+.button{
+	border-radius: 1rem;
+    border: inherit;
+    background-color: orange;
+	color: #fff;
+    /* box-shadow: 0px 0px 5px 0px rgb(207, 207, 207); */
+    padding: 10px;
+	text-align: center;
+}
+
+/* style post.php */
+
+.post_event form {
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+	gap: 10px	;
+	height: 100vh;
+}
+.post_event input{
+	border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
+/* Fin post.php */
+
+/*menu principal*/
+
+.menu-principal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0px;
+    border-top: 1px solid rgb(232, 232, 232);
+    background-color: #fff;
+    z-index: 100;
+    position: fixed;
+}
+
+.menu-principal ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu-principal ul{
+    margin:10px 30px 0px 30px;
+    padding-bottom: 30px;
+    gap: 30px;
+}
+
+.menu-principal a{
+    position: relative;
+    display: inline;
+}
+
+.menu-principal li{
+    display: block;
+    width:100%;
+    height: 100%;
+}
+
+.menu-principal img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*fin menu principal*/
+
+/* .link-single.post {
+    display: none;
+} */
+
+.auteur img {
+    padding-inline: 10px;
+    height: 30px;
+	width: 30px;
+	border-radius: 50%;
+
+}
+
+
+.card-participation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-participant {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-date-adresse {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/* Page conv  */
+.conv_all_message{
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.conv_img img {
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;
+}
+
+.conv_pseudo_message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
 }

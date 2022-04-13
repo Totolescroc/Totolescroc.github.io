@@ -13,7 +13,7 @@ $user = $_SESSION['membre']["email"] ?? "";
 $currentUsers = getUrrentUser($user);
 
 if (!$currentUsers) {
-  header("location:index.php");
+  header("location:accueil.php");
 }
 
 ?>
@@ -29,7 +29,7 @@ if (!$currentUsers) {
 <body>
 <h2>Profil de <?= $afficher_profil['pseudo'] . " " . $afficher_profil['email']; ?></h2>
 <form method="post">
-  <input type="submit" name="demander" value="Ajouter en ami"/>
+  <input type="submit" name="demander" class="button" value="Ajouter en ami"/>
   <a href="messagerie.php?id_membre=<?= $id ?>">Envoyer un message</a>
 </form>
 <?php

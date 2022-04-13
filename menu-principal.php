@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style2.css" />
     </head>
 
     <body>      
         <nav class='menu-principal'>
             <ul>
-                <a href="index.php">
+                <a href="accueil.php">
                 <li>
                     <img  class="home" src="image/home.svg" alt="icone-home">
                 </li>

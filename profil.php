@@ -7,7 +7,7 @@ $user = $_SESSION['membre']["email"] ?? "";
 $currentUsers =  getUrrentUser($user);
 
 if (!$currentUsers) {
-    header("location:index.php");
+    header("location:accueil.php");
 }
 
 
@@ -16,7 +16,7 @@ $getFollow = $pdo->query("SELECT COUNT(id_follow) FROM follow WHERE id_suivi = $
 $follow = $getFollow -> fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

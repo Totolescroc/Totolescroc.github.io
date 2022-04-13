@@ -1,8 +1,7 @@
 <?php
 require "funnction.php";
-include('header.php');
+include('menu-principal.php');
 ?>
-
 <?php
 
 $user = $_SESSION['membre']["email"] ?? "";
@@ -85,7 +84,7 @@ if (isset($_POST["commenter"])) {
 <form method="post">
     <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
     <br><br>
-    <input type="submit" name="commenter" value="commenter">
+    <input type="submit" name="commenter" class="button" value="commenter">
 </form>
 </div>
 
@@ -100,7 +99,7 @@ if (isset($_POST["commenter"])) {
     ?> 
     <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a></div></div> 
 
-    <div>
+    <div class="auteur">
         <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
         <?php echo $comcom['date_com'];?> <br>
@@ -115,3 +114,4 @@ if (isset($_POST["commenter"])) {
     ?>
     
 </div>
+

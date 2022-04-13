@@ -115,7 +115,7 @@ if (!empty($message)) {
 <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
   <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
   <input name="fichier" type="file" id="fichier_a_uploader" />
-  <input type="submit" name="submit" value="Valider" class="cta" />
+  <input type="submit" name="submit" class="button" value="Valider" class="cta" />
 </form>
 <?php
     $get_image = $pdo ->query("SELECT photo_profil FROM membre WHERE id_membre = '$currentUsers[id_membre]'"); 

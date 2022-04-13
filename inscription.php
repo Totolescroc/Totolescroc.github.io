@@ -5,7 +5,7 @@ include('init.php');
 
 // Si la session membre existe, alors je redirige vers l'accueil :
 if(isset($_SESSION['membre'])) {
-	header('location:index.php');
+	header('location:accueil.php');
 }
 
 // Si le form a été posté :
@@ -68,12 +68,13 @@ if($_POST) {
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="stylesheet" href="style2.css">
      <title>Inscription</title>
  </head>
  <body>
      <h1>Insription</h1>
 
-     <p>Veuillez rentrer les champs ci dessous</p>
+     <h3>Veuillez rentrer les champs ci dessous</h3>
 	 <div class="inscription-form">
 	 	<form method="post">
 				<label for="pseudo">pseudo</label>
@@ -85,7 +86,7 @@ if($_POST) {
 				<label for="mdp">Mot de passe</label>
 				<input type="password" name="mdp" id="mdp" required>
 				<br><br>
-				<input type="submit" value="S'inscrire">
+				<input type="submit" class="button" value="S'inscrire">
 		</form>
 	 </div>
  </body>

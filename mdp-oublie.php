@@ -10,7 +10,7 @@ de votre adresse mail lié à votre compte
     <input type="text" name="email" id="email" placeholder="Veuillez rentrer votre mail"><br><br>
     <label> Veuillez rentrer votre nouveau mot de passe</label><br>
     <input type="password" name="pwd" id="pwd" placeholder="mot de passe"><br><br>
-    <input type="submit" value="envoyer la demande">
+    <input type="submit" class="button" value="envoyer la demande">
 </form>
 
 <?php 

@@ -5,7 +5,7 @@ require ("funnction.php");
 
 //si la session membre existe alors je redirige vers l 'acceuil:
 if(isset($_SESSION['membre'])) {
-    header('location:index.php');
+    header('location:accueil.php');
 }
 //si le form est posté:
 if($_POST) {
@@ -30,7 +30,7 @@ if($_POST) {
             $_SESSION['membre']['email'] = $membre['email'];
 
             //je redirige vers la page d'acceuil
-            header('location:index.php');
+            header('location:accueil.php');
 
         } else {
             //le mdp est incorrect :
@@ -58,7 +58,7 @@ if($_POST) {
             <input type="email" name="email" id="email" placeholder="email" required>
             <label for="mdp">Mot de passe</label>
             <input type="password" name="mdp" id="mdp" placeholder="Mot de passe" required>
-            <input type="submit" value="Se connecter">
+            <input type="submit" class="button" value="Se connecter">
         </form>
     </div>
 </body>

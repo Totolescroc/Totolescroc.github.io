@@ -1,13 +1,13 @@
 <?php
 require "funnction.php";
-include('header.php');
+include('menu-principal.php');
 $user = $_SESSION['membre']["email"] ?? "";
 $currentUsers = getUrrentUser($user);
 // echo "<pre>";
 // print_r($currentUsers);
 // echo "</pre>";
 if (!$currentUsers) {
-    header("location:index.php");
+    header("location:accueil.php");
 }
 
 
@@ -19,21 +19,24 @@ if (!$currentUsers) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
     <title>Annonce</title>
 </head>
 
 <body>
 
     <?php echo $content;?>
-    <form method="post">
+    <div class = "post_event">
 
-        <?php 
+        <form method="post">
+            
+            <?php 
         ?>
         <select name="cat" id="cat" required>
             <?php
             $get_cat = $pdo ->query('SELECT * FROM categorie');
-        while ($cat = $get_cat-> fetch(PDO::FETCH_ASSOC)) {
-        ?>
+            while ($cat = $get_cat-> fetch(PDO::FETCH_ASSOC)) {
+                ?>
             <option value="<?php echo $cat['id_cat'];?>"><?php echo $cat['name_cat'];?></option>
             <?php } ?>
         </select>
@@ -47,12 +50,16 @@ if (!$currentUsers) {
         <br></br>
         <input type="time" name="heure_post" id="heure_post">
         <br><br>
+        <label for="adresse">Quelle est l'adresse</label>
+        <input type="text" name="adresse" placeholder="Rentrez une adresse">
+        <br><br>
         <label for="description">Description</label>
         <input type="text" name="description" id="description" required>
         <br></br>
-        <input type="submit" value="Poster">
+        <input type="submit" class="button" value="Poster">
     </form>
-
+</div>
+    
     <?php 
     if ($_POST) {
         
@@ -62,8 +69,9 @@ $post =[
     'date_post'=> $_POST['date_post'],
     'content_post' => $_POST['description'],
     'id_cat'=> $_POST['cat'],
+    'adresse' => $_POST['adresse']
 ];
-        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post, id_cat) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]','$_POST[cat]')");
+        $pdo->exec("INSERT INTO post (id_membre, titre, date_post, content_post, heure_post, id_cat, adresse) VALUES ('$post[id_membre]', '$_POST[titre]', '$_POST[date_post]', '$_POST[description]', '$_POST[heure_post]','$_POST[cat]', '$_POST[adresse]')");
 
     }
     ?>
