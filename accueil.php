@@ -67,18 +67,16 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             </div>
             
         </div>
-            <div class='card-annonce-titre'>
-    
-    <?= $post['titre'] ?>
-    </div>
+        <div class='card-annonce-titre'>
+            <?= $post['titre'] ?>
+        </div>
     <div class="card-date-adresse">
         <div class="card-adresse">
          <?php echo $post['adresse'];?>   
         </div>
         <div class="card-date">
             <?php echo $post['date_post']?>
-        </div>
-        
+        </div>   
     </div>
     <a class="link-single-post" href="single-post.php?id_post=<?= $post['id_post'] ?>"></a>
 

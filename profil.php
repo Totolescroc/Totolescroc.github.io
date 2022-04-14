@@ -1,6 +1,5 @@
 <?php
 require "funnction.php";
-include('header.php');
 
 $user = $_SESSION['membre']["email"] ?? "";
 
@@ -25,24 +24,66 @@ $follow = $getFollow -> fetch(PDO::FETCH_ASSOC);
     <title>Page Profil</title>
 </head>
 <body>
-    <h2>Voici le profil de <?= $currentUsers['pseudo']; ?></h2>
-    <div>Quelques informations sur vous : </div>
-    <ul>
-        <li>Votre id est : <?= $currentUsers['id_membre'] ?></li>
-        <li>Votre mail est : <?= $currentUsers['email'] ?></li>
-        <li>Nombre d'abonnés : <?php echo implode($follow);?></li>
-    </ul>
-    <?php include("upload_img.php");?>
-    <h3>Mes annonces:</h3>
+<?php include("upload_img.php");?>
+
+    <div class="profil_image_pseudo">
+        <img src="<?php echo $image['photo_profil'] ?>" alt="">
+        <h2>Profil de <?php echo $currentUsers['pseudo'];?></h2>
+    </div>
+
+    <div>
+        <ul>
+            <li><p>Followers</p><p><?php echo implode($follow);?></p></li>
+            <li>Annonces postées </li>
+            <li>Follows</li>
+        </ul>
+    </div>
+    <h2>Mes annonces:</h2>
+
+<div class="card-annonce-container">    
 
 <?php
 $r = $pdo->query("SELECT * FROM post WHERE id_membre= $currentUsers[id_membre]");
 while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
     ?>
-    <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-    <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $post['titre'] ?></div>
-    <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($post['content_post']); ?></div>
+
+<div class='card-annonce' id='card-annonce'>
+    
+    <div class="cat-auteur">
+        <div class="card-cat">
+            <?php
+                $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$post[id_cat]'"); 
+                $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
+
+        echo $cat['name_cat']; ?>
+        </div>
+        <div class="auteur">
+            <?php
+                $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$post[id_membre]'"); 
+                $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
+            ?>
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
+
+            Fait par  &nbsp <a href="voir_profil.php?id_membre=<?= $post['id_membre'] ?>"><?php echo $pseudo['pseudo'];?> </a>
+        </div>
+        
+    </div>
+    <div class='card-annonce-titre'>
+        <?= $post['titre'] ?>
+    </div>
+    <div class="card-date-adresse">
+    <div class="card-adresse">
+        <?php echo $post['adresse'];?>   
+    </div>
+    <div class="card-date">
+        <?php echo $post['date_post']?>
+    </div>   
+</div>
+<a class="link-single-post" href="single-post.php?id_post=<?= $post['id_post'] ?>"></a>
+
+<div><?= nl2br($post['content_post']); ?></div>
     <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
+</div>
 <?php
 }
 ?>
@@ -50,18 +91,8 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
 <!-- #################
 a modifier en juste mes annonces 
 ################# -->
-    <h3>mes annonces aimées: </h3>
-<?php
-    $r = $pdo->query("SELECT * FROM post WHERE id_post IN (SELECT id_post FROM reaction WHERE id_membre = $currentUsers[id_membre])");
-while ($post = $r-> fetch(PDO::FETCH_ASSOC)){
-    ?>
-    <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-    <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $post['titre'] ?></div>
-    <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($post['content_post']); ?></div>
-    <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
-<?php
-}
-?>
+
+
 <h3>mes abonnements</h3>
 <?php
 //affiche les personnes que je suis

@@ -525,7 +525,13 @@ textarea {
 }
 
 /* Page profil */
+.profil_image_pseudo{
+    display: flex;
+}
 
-
-
+.profil_image_pseudo img {
+    height: 50px;
+    border-radius: 50%;
+}
 /* Fin Page profil */
+
