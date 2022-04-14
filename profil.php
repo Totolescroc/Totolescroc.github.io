@@ -24,24 +24,45 @@ $follow = $getFollow -> fetch(PDO::FETCH_ASSOC);
     <title>Page Profil</title>
 </head>
 <body>
-<?php include("upload_img.php");?>
+<?php include("upload_img.php");
+
+$get_mesfollows = $pdo->query("SELECT COUNT(id_membre) FROM membre WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
+$mes_follows = $get_mesfollows-> fetch(PDO::FETCH_ASSOC); 
+$get_suiveur = $pdo->query("SELECT COUNT(id_membre) FROM membre WHERE id_membre IN (SELECT id_suiveur FROM follow WHERE id_suivi = $currentUsers[id_membre])");
+$suiveur = $get_suiveur-> fetch(PDO::FETCH_ASSOC); 
+$get_nb_post = $pdo->query("SELECT COUNT(id_post) FROM post WHERE id_membre =  '$currentUsers[id_membre]'");
+$nb_post = $get_nb_post -> fetch(PDO::FETCH_ASSOC);
+
+?>
 
     <div class="profil_image_pseudo">
         <img src="<?php echo $image['photo_profil'] ?>" alt="">
         <h2>Profil de <?php echo $currentUsers['pseudo'];?></h2>
     </div>
 
-    <div>
-        <ul>
-            <li><p>Followers</p><p><?php echo implode($follow);?></p></li>
-            <li>Annonces postées </li>
-            <li>Follows</li>
-        </ul>
+    <div class="voir_profil_stat">
+    <div class="nb_posts">
+        <p><?php echo implode($nb_post);?></p>
+        <p>Annonces postées</p>
     </div>
+    <div class="nb_followers">
+        <p><?php echo implode($suiveur);?></p>
+        <p>Followers</p>
+    </div>
+    <div class="nb_follows">
+        <p><?php echo implode($mes_follows);?></p>
+        <p>Follows</p>
+    </div>
+</div>
+<div>
+    <a href="?action=deconnexion" class="button">Déconnexion</a>
+
+</div>
     <h2>Mes annonces:</h2>
+    
 
 <div class="card-annonce-container">    
-
+		
 <?php
 $r = $pdo->query("SELECT * FROM post WHERE id_membre= $currentUsers[id_membre]");
 while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
@@ -93,27 +114,11 @@ a modifier en juste mes annonces
 ################# -->
 
 
-<h3>mes abonnements</h3>
-<?php
-//affiche les personnes que je suis
-$get_mesfollows = $pdo->query("SELECT id_membre, pseudo, photo_profil FROM membre WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
-while ($mesfollows = $get_mesfollows-> fetch(PDO::FETCH_ASSOC)){?>
-    <a href="voir_profil.php?id_membre=<?= $mesfollows['id_membre'] ?>"><?php echo $mesfollows['pseudo'];?></a>
-    <img src="<?php echo $mesfollows['photo_profil'] ?>" alt="" width="200px">
-    <?php
-};
-?>
 
-<h3>mes followers</h3>
-<?php
-//affiche les personnes qui me suivent  
-$get_suiveur = $pdo->query("SELECT id_membre, pseudo, photo_profil FROM membre WHERE id_membre IN (SELECT id_suiveur FROM follow WHERE id_suivi = $currentUsers[id_membre])");
-while ($suiveur = $get_suiveur-> fetch(PDO::FETCH_ASSOC)){?>
-    <a href="voir_profil.php?id_membre=<?= $suiveur['id_membre'] ?>"><?php echo $suiveur['pseudo'];?></a>
-    <img src="<?php echo $suiveur['photo_profil'] ?>" alt="" width="200px">
-    <?php
-};
-?>
 
 </body>
 </html>
+
+<?php
+include ("menu-principal.php")
+?>

@@ -168,9 +168,9 @@ body {
 
 .cat-auteur {
     display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: flex-start;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
     /* margin-bottom: 10px; */
     width: 100%;
     gap: 10px;
@@ -524,14 +524,72 @@ textarea {
     border-radius: 200px;
 }
 
-/* Page profil */
+/* Page voir profil */
+
+.profil_form_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%; 
+}
+
+.profil_info img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.profil_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    box-shadow: 0 0 1em #1E1A1B;
+
+
+}
+.voir_profil_stat{
+    display: flex;
+    justify-content: center; 
+    gap: 10px;
+    margin-bottom: 10%;
+    font-weight: 800;
+
+}
+
+.nb_posts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nb_follows{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nb_followers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Fin Page profil */
+
+/* Page voir profil */
 .profil_image_pseudo{
     display: flex;
 }
 
 .profil_image_pseudo img {
-    height: 50px;
+    height: 75px;
+    width: 75px;
     border-radius: 50%;
 }
-/* Fin Page profil */
 
+/* faire des pages pour abonnement/followers */
+/* Fin Page voir profil */

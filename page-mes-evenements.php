@@ -80,13 +80,15 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)){
 
 <div class='card-annonce'>
     <div class="cat-auteur">
-      <?php echo $cat['name_cat']; ?>
+      <div class="card-cat">
+        <?php echo $cat['name_cat']; ?>
+      </div>
       <div class="auteur">
           <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
       
           Fait par <a href="voir_profil.php?id_membre=<?= $post['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a>
         </div>
-
+      
     </div>
     <div class='card-annonce-titre'>
     <h2><?= $post['titre'] ?></h2>

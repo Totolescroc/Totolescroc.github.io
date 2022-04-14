@@ -26,8 +26,6 @@ $currentUsers =  getUrrentUser($user);
         if(isset($_SESSION['membre'])) {
         
     ?>
-    	<a href="?action=deconnexion">Déconnexion</a>
-		<br>
 
         <h2>Bonjour <?php echo $_SESSION['membre']['pseudo'];?> !</h2>
     <?php
@@ -67,16 +65,18 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
             </div>
             
         </div>
-        <div class='card-annonce-titre'>
-            <?= $post['titre'] ?>
-        </div>
+            <div class='card-annonce-titre'>
+    
+    <?= $post['titre'] ?>
+    </div>
     <div class="card-date-adresse">
         <div class="card-adresse">
          <?php echo $post['adresse'];?>   
         </div>
         <div class="card-date">
             <?php echo $post['date_post']?>
-        </div>   
+        </div>
+        
     </div>
     <a class="link-single-post" href="single-post.php?id_post=<?= $post['id_post'] ?>"></a>
 
@@ -142,7 +142,7 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
                     Fait par  &nbsp<a href="voir_profil.php?id_membre=<?= $event['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a>
                 </div>           
             </div>    
-                <div class='card-annonce-titre'>
+            <div class='card-annonce-titre'>
 
             <?= $event['titre'] ?>
             </div>
