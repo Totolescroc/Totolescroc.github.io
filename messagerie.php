@@ -18,13 +18,10 @@ if (!$currentUsers) {
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style2.css">
 	<title>Messagerie</title>
 </head>
 <body>
-	<h1>Messagerie</h1>
-
-
-
 <?php
 
 if ($_POST) {
@@ -56,6 +53,8 @@ $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 <img src="<?php echo $pseudo['photo_profil']?>" alt="">
 <h2><?php echo $pseudo_receveur['pseudo']; ?></h2>	
 </div>
+
+<div class="message_container">
 <?php
 while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 	$get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$currentUsers[id_membre]'"); 
@@ -72,7 +71,7 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 				<img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
 			</div>
 			<div class="text_sender">
-				<p style = "color:red"> <?php echo $messagerie['message'] . "<br>";?></p>
+				<p style = "color:green"> <?php echo $messagerie['message'] . "<br>";?></p>
 				<p> <?php echo $messagerie['date_message'] . "<br>"; ?></p>
 			</div>		
 		
@@ -86,9 +85,16 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 
 	?>
 		<div class="message_receveur">
+			<div class="text_receveur">
+					<p style = "color:red"> <?php echo $messagerie['message'] . "<br>";?></p>
+					<p> <?php echo $messagerie['date_message'] . "<br>"; ?></p>
+			</div>	
 			
-			<p style = "color:green"> <?php echo $messagerie['message'] . "<br>";
-			echo $messagerie['date_message']; ?></p>
+			<div class="image_receveur">
+					<img src="<?php echo $pseudo_receveur['photo_profil'] ?>" alt="">
+			</div>
+					
+			
 		</div>
 				
 
@@ -97,14 +103,18 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 	}
 }
 ?>
+<div class="message_form_container">
+<form method="post" class="message_form">
 
-<form method="post">
-    <textarea name="messagerie" id="messagerie" cols="30" rows="4"required></textarea>
-    <br><br>
-    <input type="submit" name="envoyer" class="button" value="envoyer">
+<textarea name="messagerie" id="messagerie" cols="30" rows="4"required></textarea>
+<input type="submit" name="envoyer" class="button" value="envoyer">
 
 
 </form>
+</div >
+
+
+</div>
 
 
 </body>

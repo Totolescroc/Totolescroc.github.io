@@ -64,6 +64,19 @@ button:focus, input{
 
 
 /*fin css reset*/
+
+/* Import de fonction */
+
+@font-face {
+    font-family: "Univers";
+    src: url("/font/univers/UniversBlack.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Eagle";
+    src: url("/font/eagle/Eagle\ Bold\ Regular.ttf") format("ttf");
+}
+/* Fin fonction */
 body {
     color: #1E1A1B ;
     font-size: 12px;
@@ -77,11 +90,13 @@ h1, h2, h3 {
 h1 {
     font-size: 36px;
     color: #1E1A1B;
+    font-family: 'Univers';
 }
 
 h2 {
     font-size: 24px;
     color: #EA9656;
+    font-family: "Eagle";
 }
 
 h3 {
@@ -362,3 +377,155 @@ body {
     gap: 10px;
     width: 100%;
 }
+
+/* Fin page conv  */
+
+/* Debut page messagerie */
+
+.image_sender img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+
+.image_receveur img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+
+.top_messagerie_bar img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+.top_messagerie_bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 1em #1E1A1B;
+    margin-bottom: 10%;
+    width: 100%;
+
+}
+
+.message_receveur {
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2%;
+    margin-block: 5%;
+
+}
+.message_sender{
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2%;
+    margin-block: 5%;
+
+}
+
+.message_container {
+    padding-inline: 5%;
+}
+
+.text_sender, .text_receveur{
+    border:1px solid #1E1A1B ;
+    padding: 3%;
+    border-radius: 5%;
+}
+
+.text_receveur {
+    background-color: #E5E5E5;
+}
+
+.message_form {
+    display: flex;
+    margin-top: 20%;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%;
+    bottom: 10px;
+    position: sticky;
+    border-radius: 5%;
+    
+}
+
+.message_form textarea {
+    width: 100%;  
+}
+
+/* single post */
+
+.commentaire_form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%;
+    border-radius: 5%;
+
+}
+
+/* .commentaire_form_container textarea {
+    width: 100%;  
+} */
+
+
+
+.commentaire_auteur {
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 150px ;
+    align-items: center;
+    margin-block: 2%;
+    margin-bottom: 5%;
+}
+.commentaire_auteur img{
+    height: 30px;
+    width: 30px;
+    margin-inline: 1%;
+    border-radius: 50%;
+    margin-right: 5%;
+    
+}
+
+.commentaire_date {
+    font-size: 8px;
+}
+.commentaire_pseudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.commentaire_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 66%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.commentaire_content{
+    font-size: 16px;    
+}
+
+textarea {
+    border-radius: 200px;
+}
+
+/* Page profil */
+
+
+
+/* Fin Page profil */

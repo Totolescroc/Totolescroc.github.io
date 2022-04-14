@@ -4,6 +4,7 @@ include('menu-principal.php');
 ?>
 <?php
 
+
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers =  getUrrentUser($user);
@@ -49,22 +50,54 @@ if (isset($_POST['like'])){
 
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single post</title>
+</head>
+<body>
+    
+<div class='card-annonce'>
+    <div class="cat-auteur">
+        <div class="card-cat">
+            <?php echo $cat['name_cat'];?>
+        </div>
+        <div class="auteur">
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
+            fait par <a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a>
+        </div>
+    </div>
+        
+    <div class='card-annonce-titre'>
+        <?= $singlesingle['titre']; ?>
+    </div>
+    <div class="card-date-adresse">
+        <div class="card-adresse">
+            <?php echo $singlesingle['adresse'];?>   
+        </div>
+        <div class="card-date">debute le <?= $singlesingle['date_post'] ?> 
+        </div>
+    </div>
 
-<div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-<div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre']; ?> <?php echo $cat['name_cat'];?>
+        <div>
+            <?= nl2br($singlesingle['content_post']); ?>
+        </div>
+    <!-- <input>nombre de like : </div> -->
+    <div class="card-participation">
+        <form method="post" >
+            <input type="submit" name= "<?php echo "first".$post['id_post']?>"  class="button" value="Je participe"/>
+        </form>
+        <div class= participant>
+            <div><?php echo implode($like);?></div>
+            <div>participants</div>
+        </div>
+    </div>
 </div>
-<div><a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div>
-<img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+ 
 
-<div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
-
-<div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
-
-<!-- <input>nombre de like : </div> -->
-<form method="post">
-  <input type="submit" name="like" value="like <?php echo implode($like);?>"/>
-</form>
-</div>
 
 
 
@@ -78,17 +111,15 @@ if (isset($_POST["commenter"])) {
 }
 ?>
 
-<div>
 <h3>Commentaire</h3>
 
-<form method="post">
-    <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
-    <br><br>
-    <input type="submit" name="commenter" class="button" value="commenter">
-</form>
+<div >
+            <form method="post" class="commentaire_form_container">
+                <textarea name="commentaire" id="commentaire" cols="30" rows="3"></textarea>
+                <input type="submit" name="commenter" class="button" value="commenter">
+            </form>
 </div>
 
-<div>
     <?php
         $com = $pdo ->query("SELECT * FROM commentaire WHERE id_post = '$_GET[id_post]'"); 
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
@@ -97,21 +128,33 @@ if (isset($_POST["commenter"])) {
     $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$comcom[id_membre]'"); 
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
     ?> 
-    <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a></div></div> 
 
-    <div class="auteur">
-        <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
-
-        <?php echo $comcom['date_com'];?> <br>
+<div class="commentaire_container">
+    <div class="commentaire_auteur">
+        <div class="commentaire_pseudo">
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+            <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a>   
+        </div>
+        <div class="commentaire_date">
+            <?php echo $comcom['date_com'];?> <br>
+        </div> 
     </div>
-    <div>
+    <div class="commentaire_content">
         <?php echo $comcom['content'];?> <br><br>
     </div>
+</div>    
+    
 
         
     <?php
         }
     ?>
     
-</div>
 
+
+</body>
+</html>
+
+<?php
+include('menu-principal.php');
+?>

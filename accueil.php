@@ -73,7 +73,7 @@ while ($post = $x-> fetch(PDO::FETCH_ASSOC)){
     </div>
     <div class="card-date-adresse">
         <div class="card-adresse">
-         <?php echo $post['adresse']?>   
+         <?php echo $post['adresse'];?>   
         </div>
         <div class="card-date">
             <?php echo $post['date_post']?>
