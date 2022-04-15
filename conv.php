@@ -24,7 +24,8 @@ if (!$currentUsers) {
 }
 
 
-$get_receveur = $pdo ->query("SELECT DISTINCT(id_to) FROM messagerie WHERE id_from = '$currentUsers[id_membre]'");
+$get_receveur = $pdo ->query("SELECT DISTINCT(id_to)  FROM messagerie WHERE id_from = '$currentUsers[id_membre]'");
+
 
 
 
@@ -61,7 +62,6 @@ $last_message = $get_last_message -> fetch(PDO::FETCH_ASSOC);
 
 <?php
 }
-
 ?>
 
 <script src="javascript.js"></script>

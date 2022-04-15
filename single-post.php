@@ -59,7 +59,9 @@ if (isset($_POST['like'])){
     <title>single post</title>
 </head>
 <body>
-    
+
+<div class="card-annonce-container">    
+
 <div class='card-annonce'>
     <div class="cat-auteur">
         <div class="card-cat">
@@ -96,7 +98,7 @@ if (isset($_POST['like'])){
         </div>
     </div>
 </div>
- 
+</div>
 
 
 

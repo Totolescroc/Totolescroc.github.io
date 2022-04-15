@@ -39,7 +39,13 @@ $nb_post = $get_nb_post -> fetch(PDO::FETCH_ASSOC);
         <img src="<?php echo $image['photo_profil'] ?>" alt="">
         <h2>Profil de <?php echo $currentUsers['pseudo'];?></h2>
     </div>
-
+    <div class="deco">
+    <a href="?action=deconnexion" class="button">Déconnexion</a>
+    </div>
+    <div class="modif_profil_link">
+    <a href="modif_profil.php" class="button_modif">Modifier le profil</a>
+  
+    </div>
     <div class="voir_profil_stat">
     <div class="nb_posts">
         <p><?php echo implode($nb_post);?></p>
@@ -54,10 +60,7 @@ $nb_post = $get_nb_post -> fetch(PDO::FETCH_ASSOC);
         <p>Follows</p>
     </div>
 </div>
-<div>
-    <a href="?action=deconnexion" class="button">Déconnexion</a>
 
-</div>
     <h2>Mes annonces:</h2>
     
 
@@ -105,6 +108,7 @@ while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
 <div><?= nl2br($post['content_post']); ?></div>
     <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
 </div>
+</div>
 <?php
 }
 ?>
@@ -114,7 +118,7 @@ a modifier en juste mes annonces
 ################# -->
 
 
-
+<script src="javascript.js"></script>
 
 </body>
 </html>

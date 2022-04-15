@@ -60,25 +60,34 @@ if (isset($_POST['modif_mdp'])){
     <title>Modifier profil</title>
 </head>
 <body>
-<form method="post">
-	<label for="pseudo">pseudo</label>
-	<input type="text" name="pseudo" id="pseudo">
-    <input type="submit" class="button" name="modif_pseudo" value="Modifier">
-</form>
+<div class="modif_container">
+    <div>
 
-<form method="post">
-	<label for="email">Adresse mail</label>
-	<input type="email" name="email" id="email">
-    <input type="submit" class="button" name="modif_email" value="Modifier">
-</form>
-<form method="post">
-	<label for="mdp">Mot de passe</label>
-	<input type="password" name="mdp" id="mdp">
-    <input type="submit" class="button" name="modif_mdp" value="Modifier">
+        <form method="post">
+            <input class='input_modif' type="text" name="pseudo" id="pseudo" placeholder="Pseudo">
+            <input type="submit" class="button" name="modif_pseudo" value="Modifier">
+        </form>
+    </div>
 
-</form>
+    <div>
 
-<?php include("upload_img.php");?>
+        <form method="post">
+                <input class='input_modif' type="email" name="email" id="email" placeholder="Adresse mail">
+                <input type="submit" class="button" name="modif_email" value="Modifier">
+        </form>
+    </div>
+    <div>
+
+        <form method="post">
+            <input class='input_modif' type="password" name="mdp" id="mdp" placeholder="Mot de passe">
+            <input type="submit" class="button" name="modif_mdp" value="Modifier">
+        </form>
+    </div>
+    <div>
+
+        <?php include("upload_img.php");?>
+    </div>
+</div>
 
 </body>
 </html>

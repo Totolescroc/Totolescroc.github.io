@@ -22,6 +22,11 @@ if (!$currentUsers) {
 	<title>Messagerie</title>
 </head>
 <body>
+
+<div class="back">
+<?php include "back.php"?>
+</div>
+
 <?php
 
 if ($_POST) {
@@ -66,14 +71,14 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 		?>
 
 		<div class="message_sender">
-			
+		<div class="text_sender">
+				<p> <?php echo $messagerie['message'] . "<br>";?></p>
+				<p> <?php echo $messagerie['date_message'] . "<br>"; ?></p>
+			</div>	
 			<div class="image_sender">
 				<img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
 			</div>
-			<div class="text_sender">
-				<p style = "color:green"> <?php echo $messagerie['message'] . "<br>";?></p>
-				<p> <?php echo $messagerie['date_message'] . "<br>"; ?></p>
-			</div>		
+				
 		
 
 
@@ -85,14 +90,15 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 
 	?>
 		<div class="message_receveur">
+		<div class="image_receveur">
+					<img src="<?php echo $pseudo_receveur['photo_profil'] ?>" alt="">
+			</div>
 			<div class="text_receveur">
-					<p style = "color:red"> <?php echo $messagerie['message'] . "<br>";?></p>
+					<p> <?php echo $messagerie['message'] . "<br>";?></p>
 					<p> <?php echo $messagerie['date_message'] . "<br>"; ?></p>
 			</div>	
 			
-			<div class="image_receveur">
-					<img src="<?php echo $pseudo_receveur['photo_profil'] ?>" alt="">
-			</div>
+			
 					
 			
 		</div>
@@ -106,7 +112,7 @@ while ($messagerie = $r-> fetch(PDO::FETCH_ASSOC)){
 <div class="message_form_container">
 <form method="post" class="message_form">
 
-<textarea name="messagerie" id="messagerie" cols="30" rows="4"required></textarea>
+<textarea name="messagerie" id="messagerie" cols="30" rows=""required></textarea>
 <input type="submit" name="envoyer" class="button" value="envoyer">
 
 

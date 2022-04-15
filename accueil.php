@@ -17,7 +17,6 @@ include('menu-principal.php');
 
 $user = $_SESSION['membre']["email"] ?? "";
 $currentUsers =  getUrrentUser($user);
- var_dump($_SESSION);
 
 
 
@@ -34,7 +33,9 @@ $currentUsers =  getUrrentUser($user);
     ?>
     
     <?php
-    if (isset($currentUsers['id_membre'])){?>
+    if (isset($currentUsers['id_membre'])){
+        include('users.php');?>
+        
 
 <h1>Les posts des gens que tu follow:</h1>
 
