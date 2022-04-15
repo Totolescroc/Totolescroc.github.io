@@ -24,7 +24,7 @@ $follow = $getFollow -> fetch(PDO::FETCH_ASSOC);
     <title>Page Profil</title>
 </head>
 <body>
-<?php include("upload_img.php");
+<?php
 
 $get_mesfollows = $pdo->query("SELECT COUNT(id_membre) FROM membre WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
 $mes_follows = $get_mesfollows-> fetch(PDO::FETCH_ASSOC); 

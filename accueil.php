@@ -17,7 +17,7 @@ include('menu-principal.php');
 
 $user = $_SESSION['membre']["email"] ?? "";
 $currentUsers =  getUrrentUser($user);
-
+ var_dump($_SESSION);
 
 
 
@@ -26,10 +26,10 @@ $currentUsers =  getUrrentUser($user);
         if(isset($_SESSION['membre'])) {
         
     ?>
-
         <h2>Bonjour <?php echo $_SESSION['membre']['pseudo'];?> !</h2>
     <?php
     
+        
        }
     ?>
     
