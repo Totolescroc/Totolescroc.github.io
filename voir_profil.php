@@ -1,16 +1,24 @@
 <?php
 require "funnction.php";
-include('header.php');
+
 
 $id = (int) $_GET['id_membre'];
-$afficher_profil = $pdo->query("SELECT * 
-FROM membre 
-WHERE id_membre = $id",);
+$afficher_profil = $pdo->query("SELECT * FROM membre WHERE id_membre = $id");
 $afficher_profil = $afficher_profil->fetch();
 
 $user = $_SESSION['membre']["email"] ?? "";
 
 $currentUsers = getUrrentUser($user);
+
+if (!$currentUsers) {
+  header("location:accueil.php");
+}
+$get_mesfollows = $pdo->query("SELECT COUNT(id_membre) FROM membre WHERE id_membre IN (SELECT id_suivi FROM follow WHERE id_suiveur = $currentUsers[id_membre])");
+$mes_follows = $get_mesfollows-> fetch(PDO::FETCH_ASSOC); 
+$get_suiveur = $pdo->query("SELECT COUNT(id_membre) FROM membre WHERE id_membre IN (SELECT id_suiveur FROM follow WHERE id_suivi = $currentUsers[id_membre])");
+$suiveur = $get_suiveur-> fetch(PDO::FETCH_ASSOC); 
+$get_nb_post = $pdo->query("SELECT COUNT(id_post) FROM post WHERE id_membre =  '$_GET[id_membre]'");
+$nb_post = $get_nb_post -> fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +30,32 @@ $currentUsers = getUrrentUser($user);
     <title>Document</title>
 </head>
 <body>
-<h2>Profil de <?= $afficher_profil['pseudo'] . " " . $afficher_profil['email']; ?></h2>
-<form method="post">
-  <input type="submit" name="demander" value="Ajouter en ami"/>
-  <a href="messagerie.php?id_membre=<?= $id ?>">Envoyer un message</a>
+<div class="profil_info">
+    <img src="<?php echo $afficher_profil['photo_profil'] ?>" alt="">
+    <h2>Profil de <?= $afficher_profil['pseudo'] ?></h2>
+  
+
+</div>
+<div class="voir_profil_stat">
+    <div class="nb_posts">
+        <p><?php echo implode($nb_post);?></p>
+        <p>Annonces postées</p>
+    </div>
+    <div class="nb_followers">
+        <p><?php echo implode($suiveur);?></p>
+        <p>Followers</p>
+    </div>
+    <div class="nb_follows">
+        <p><?php echo implode($mes_follows);?></p>
+        <p>Follows</p>
+    </div>
+</div>
+
+<form method="post" class="profil_form_container">
+      <input type="submit" name="demander" class="button" value="Ajouter en ami"/>
+      <a href="messagerie.php?id_membre=<?= $id ?>">Envoyer un message</a>
 </form>
+
 <?php
 if(isset($_POST['demander'])){
     $erreur = '';
@@ -45,21 +74,70 @@ if(isset($_POST['demander'])){
   }
 }
 ?>
-<h3>Ses annonces:</h3>
+<h2>Ses annonces:</h2>
 
 <?php
 // affiche les post de l'id du profil consulté
+?>
+<div class="card-annonce-container">
+
+<?php
 $r = $pdo->query("SELECT * FROM post WHERE id_membre= $id");
 while ($post = $r-> fetch(PDO::FETCH_ASSOC)) {
     ?>
-    <div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-    <div style="color: #666; text-decoration: none; font-size: 28px;"><?= $post['titre'] ?></div>
-    <div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($post['content_post']); ?></div>
-    <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div>
+
+    <div class='card-annonce' id="card-annonce">
+        <div class= "cat-auteur">
+            <div class="card-cat">
+                <?php
+                $get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$post[id_cat]'"); 
+                $cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
+                echo $cat['name_cat']; ?>
+            </div>
+            <div class="auteur">
+                <?php
+                    $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$post[id_membre]'"); 
+                    $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
+                ?>
+                <img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
+                Fait par  &nbsp<a href="voir_profil.php?id_membre=<?= $post['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a>   
+            </div>
+        </div>
+    <div class='card-annonce-titre'>
+        <?= $post['titre'] ?>
+    </div>
+    
+    <div class="card-date-adresse">
+        <div class="card-adresse">
+            <?php echo $post['adresse']?>   
+
+        </div>
+        <div class="card-date">
+            <?php echo $post['date_post']?>
+
+        </div>
+    </div>
+    <div><?= nl2br($post['content_post']); ?></div>
+    <!-- <a href="single-post.php?id_post=<?= $post['id_post'] ?>">Voir plus</a> </div> -->
+    <div class= participant>
+        <?php
+            $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$post[id_post]','$currentUsers[id_membre]', 1)");
+            $get_like2 = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $post[id_post] ");
+            $like2 = $get_like2 ->fetch(PDO::FETCH_ASSOC);
+            
+        ?>
+        <div><?php echo implode($like2);?></div>
+        <div>participants </div>
+    </div>
+    </div>
 <?php
 }
 ?>
+
 </body>
 </html>
 
+<?php
+include('menu-principal.php')
+?>
 

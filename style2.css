@@ -1,0 +1,718 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    background: none;
+}
+body, section{
+    overflow-x: hidden;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul, li {
+	list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+button, input{
+    margin: 0px;
+    padding: 0px;
+    border: none; 
+    cursor: pointer;
+    background: none;
+}
+
+button:focus, input{
+    outline: none;   
+}
+
+
+/*fin css reset*/
+
+/* Import de fonction */
+
+@font-face {
+    font-family: "Univers";
+    src: local("/font/univers/UniversBlack.ttf") format("ttf");
+    /* font-weight: bold; */
+}
+
+@font-face {
+    font-family: "Eagle";
+    src: url("/font/eagle/Eagle\ Bold\ Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Universlt";
+    src: local("/font/univers/UniversLTStd.otf") format("ttf");
+}
+/* Fin fonction */
+
+body {
+    font-family: ;
+    color: #1E1A1B ;
+    font-size: 12px;
+    background-color: #f7f7f7;
+}
+h1, h2, h3 {
+	text-align: center;
+	margin: 30px;
+}
+
+h1 {
+    font-size: 36px;
+    color: #1E1A1B;
+    font-family: 'Eagle';
+}
+
+h2 {
+    font-size: 24px;
+    color: #EA9656;
+    font-family: "Eagle";
+}
+
+h3 {
+    color: #1E1A1B;
+    font-size: 16px;
+    font-family: "Univers";
+}
+
+body {
+    /* margin: 2%; */
+	margin-bottom: 100px;
+}
+
+/* Annonces */
+.card-annonce-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+    width: 100%;
+}
+
+
+.card-annonce{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+    width: 100%;
+    /* margin-block: 2%; */
+	padding: 3%;
+    border: 1px solid #BEC5D6; 
+    background-color: #fff;
+}
+.card-annonce-titre{
+    font-size: 16px;
+    color:#EA9656;
+	font-weight: bolder;
+	width: 100%;
+	text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-annonce img {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+}
+
+.card-annonce form {
+    margin-top: 20px;
+}
+
+.auteur {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.card-cat{
+    color: #1E1A1B;
+    font-weight: 800;
+    font-size: 12px;
+    height: fit-content;
+}
+
+.card-annonce .button{
+    padding-inline: 20px;
+    padding-inline: 150%;
+}
+
+.cat-auteur {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 10px; */
+    width: 100%;
+    gap: 10px;
+}
+/* Fin annonces */
+
+/* ######################## */
+
+/* Pages connexion  */
+
+
+.connexion-form input {
+    border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
+.connexion-form form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px	;
+	height: 100vh;
+}
+
+.connexion-form form {
+	font-weight: bolder;
+	font-size: large;
+}
+
+/* Fin page connexion */
+
+/* ######################## */
+
+/* Page inscription */
+
+.inscription-form input {
+    border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
+
+.inscription-form form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+	gap: 10px	;
+	height: 100vh;
+}
+
+.inscription-form form {
+	font-weight: bolder;
+	font-size: large;
+}
+
+
+.menu-connexion {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 50px	;
+	align-items: center;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	height: 100vh;
+
+}
+
+/* bouton deco */
+.button{
+	border-radius: 1rem;
+    border: inherit;
+    background-color: orange;
+	color: #fff;
+    /* box-shadow: 0px 0px 5px 0px rgb(207, 207, 207); */
+    padding: 10px;
+	text-align: center;
+}
+
+/* style post.php */
+
+.post_event form {
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+	gap: 10px	;
+	height: 100vh;
+}
+.post_event input{
+	border-radius: 1rem;
+    border: inherit;
+    box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
+    padding: 10px;
+    width: 300px;
+}
+/* Fin post.php */
+
+/*menu principal*/
+
+.menu-principal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 0px;
+    border-top: 1px solid rgb(232, 232, 232);
+    background-color: #fff;
+    z-index: 100;
+    position: fixed;
+}
+
+.menu-principal ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.menu-principal ul{
+    margin:10px 30px 0px 30px;
+    padding-bottom: 30px;
+    gap: 30px;
+}
+
+.menu-principal a{
+    position: relative;
+    display: inline;
+}
+
+.menu-principal li{
+    display: block;
+    width:100%;
+    height: 100%;
+}
+
+.menu-principal img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*fin menu principal*/
+
+/* .link-single.post {
+    display: none;
+} */
+
+.auteur img {
+    padding-inline: 10px;
+    height: 30px;
+	width: 30px;
+	border-radius: 50%;
+
+}
+
+
+.card-participation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-participant {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-date-adresse {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+/* Page conv  */
+.conv_all_message{
+    margin: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 20px;
+}
+
+.conv_img img {
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;
+}
+
+.conv_pseudo_message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Fin page conv  */
+
+/* Debut page messagerie */
+
+.image_sender img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+
+.image_receveur img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+
+.top_messagerie_bar img{
+    height: 50px;
+    width: 50px;
+    margin-inline: 1%;
+    border-radius: 50%;  
+}
+.top_messagerie_bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 1em #c7c1c3;
+    margin-bottom: 10%;
+    width: 100%;
+
+}
+
+.message_receveur {
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2%;
+    margin-block: 5%;
+
+}
+.message_sender{
+    display:flex;
+
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2%;
+    margin-block: 5%;
+
+}
+
+.message_container {
+    padding-inline: 5%;
+}
+
+.text_sender {
+    padding: 3%;
+    border-radius: 5%;
+    border: 1px solid #c8c7c7 ;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.text_receveur{
+    background-color:  #1E1A1B ;
+    padding: 3%;
+    border-radius: 5%;
+}
+
+.text_receveur {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #E5E5E5;
+}
+
+.message_form {
+    display: flex;
+    margin-top: 20%;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%;
+    bottom: 10px;
+    position: sticky;
+    border-radius: 5%;
+    
+}
+
+.message_form textarea {
+    width: 100%; 
+    border: 1px solid #c8c7c7;
+
+}
+
+
+
+/* single post */
+
+.commentaire_form_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%;
+    border-radius: 5%;
+
+}
+
+/* .commentaire_form_container textarea {
+    width: 100%;  
+} */
+
+
+
+.commentaire_auteur {
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 150px ;
+    align-items: center;
+    margin-block: 2%;
+    margin-bottom: 5%;
+}
+.commentaire_auteur img{
+    height: 30px;
+    width: 30px;
+    margin-inline: 1%;
+    border-radius: 50%;
+    margin-right: 5%;
+    
+}
+
+.commentaire_date {
+    font-size: 8px;
+}
+.commentaire_pseudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.commentaire_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 66%;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.commentaire_content{
+    font-size: 16px;   
+    padding-inline: 5%; 
+}
+
+textarea {
+    border-radius: 200px;
+    padding-inline: 10% ;
+}
+
+/* Page voir profil */
+
+.profil_form_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 1em 0 0 #1E1A1B; */
+    width: 100%;
+    gap: 5%; 
+}
+
+.profil_info img {
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+.profil_info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    box-shadow: 0 0 1em #c7c1c3;
+
+
+}
+.voir_profil_stat{
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+    text-align: center;
+    gap: 10%;
+    margin-bottom: 10%;
+    font-weight: 800;
+    font-family: "Univers";
+    font-size: 16px;
+
+}
+
+.nb_posts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+}
+.nb_follows{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+
+}
+.nb_followers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+
+}
+
+/* Fin Page profil */
+
+/* Page voir profil */
+.profil_image_pseudo{
+    margin-top: 10%;
+    display: flex;
+}
+
+.profil_image_pseudo img {
+    padding-left: 5%;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+}
+
+/* faire des pages pour abonnement/followers */
+/* Fin Page voir profil */
+
+/* retour page precedente */
+
+.back button{
+    position: absolute;
+    top: -0.5%;
+    height: 30px;
+    margin: 30px 0px 10px 10px;
+
+}
+
+/* Fin retour page precedente */
+
+.body-chargement img{
+    height: 200px;
+    width: 200px;
+}
+
+
+.barre_recherche{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.user_name_photo{
+    display: flex;
+    /* justify-content: space-around; */
+    gap: 0px;
+    align-items: center;
+    margin-block: 1%;
+}
+
+.user_name_photo img{
+    height: 40px;
+    width: 40px;
+    margin-inline: 1%;
+    border-radius: 50%;
+    margin-right: 5%;
+}
+
+.deco{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.modif_profil_link {
+    text-align: center;
+    margin-block: 10%;
+
+}
+
+.modif_profil_link .button_modif {
+    border-radius: 1rem;
+    border: inherit;
+    background-color: #f7f7f7;
+	color: orange;
+    border: 1px solid orange;
+    /* box-shadow: 0px 0px 5px 0px rgb(207, 207, 207); */
+    padding: 10px;
+	text-align: center;
+    font-family: "Univers";
+    
+}
+
+.modif_container{
+    width:100%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;=
+    align-items: flex-start;
+    margin-left: 5%;
+    gap: 50px;
+}
+.input_modif {
+    background-color: white;
+    padding: 10px;
+    border-radius: 200px;
+}

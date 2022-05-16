@@ -1,9 +1,9 @@
 <?php
 require "funnction.php";
-include('header.php');
+include('menu-principal.php');
 ?>
-
 <?php
+
 
 $user = $_SESSION['membre']["email"] ?? "";
 
@@ -24,41 +24,84 @@ $singlesingle = $single-> fetch(PDO::FETCH_ASSOC);
 $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$singlesingle[id_membre]'"); 
 $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC);
 // fonctionne mais il faut rafraichir la page pour voir +1 like
+
 $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
 $like = $get_like ->fetch(PDO::FETCH_ASSOC);
+$get_cat = $pdo ->query("SELECT name_cat FROM categorie WHERE id_cat = '$singlesingle[id_cat]'"); 
+$cat = $get_cat-> fetch(PDO::FETCH_ASSOC);
+
 ?>
-
-<div style="margin-top: 20px; background: white; box-shadow: 0 5px 10px rgba(0, 0, 0, .09); padding: 5px 10px; border-radius: 10px">
-<div style="color: #666; text-decoration: none; font-size: 28px;"><?= $singlesingle['titre'] ?></div>
-<div><a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a></div>
-<img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
-
-<div style="border-top: 2px solid #EEE; padding: 15px 0"><?= nl2br($singlesingle['content_post']); ?></div>
-<div>debute à <?= $singlesingle['heure_post'] ?> le <?= $singlesingle['date_post']; ?></div>
-
-<!-- <input>nombre de like : </div> -->
-<form method="post">
-  <input type="submit" name="like" value="like <?php echo implode($like);?>"/>
-</form>
-</div>
-
 <?php
 if (isset($_POST['like'])){
-    $erreur = '';
     $r = $pdo->query("SELECT * FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
 	// S'il y a un ou plusieurs résultats :
 	if($r->rowCount() >= 1) {
-		$erreur .= '<p>deja aimé.</p>';
-    echo $erreur;
+        $pdo->exec("DELETE FROM reaction WHERE id_membre= $currentUsers[id_membre] AND id_post= $_GET[id_post]");
+        $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
+        $like = $get_like ->fetch(PDO::FETCH_ASSOC);
     }
     else{
 
         $pdo->exec("INSERT INTO reaction (id_post, id_membre, aimer) VALUES ( '$_GET[id_post]','$currentUsers[id_membre]', 1)");
-        $content .= '<p>je like !</p>';
-        echo $content;
+        $get_like = $pdo ->query("SELECT COUNT(id_reaction) FROM reaction WHERE id_post = $_GET[id_post] ");
+        $like = $get_like ->fetch(PDO::FETCH_ASSOC);
     }
 }
+
+
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single post</title>
+</head>
+<body>
+
+<div class="card-annonce-container">    
+
+<div class='card-annonce'>
+    <div class="cat-auteur">
+        <div class="card-cat">
+            <?php echo $cat['name_cat'];?>
+        </div>
+        <div class="auteur">
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="">
+            fait par <a href="voir_profil.php?id_membre=<?= $singlesingle['id_membre'] ?>"> <?php echo $pseudo['pseudo'];?> </a>
+        </div>
+    </div>
+        
+    <div class='card-annonce-titre'>
+        <?= $singlesingle['titre']; ?>
+    </div>
+    <div class="card-date-adresse">
+        <div class="card-adresse">
+            <?php echo $singlesingle['adresse'];?>   
+        </div>
+        <div class="card-date">debute le <?= $singlesingle['date_post'] ?> 
+        </div>
+    </div>
+
+        <div>
+            <?= nl2br($singlesingle['content_post']); ?>
+        </div>
+    <!-- <input>nombre de like : </div> -->
+    <div class="card-participation">
+        <form method="post" >
+            <input type="submit" name= "<?php echo "first".$post['id_post']?>"  class="button" value="Je participe"/>
+        </form>
+        <div class= participant>
+            <div><?php echo implode($like);?></div>
+            <div>participants</div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
 
 <?php
 if (isset($_POST["commenter"])) {
@@ -70,17 +113,15 @@ if (isset($_POST["commenter"])) {
 }
 ?>
 
-<div>
 <h3>Commentaire</h3>
 
-<form method="post">
-    <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
-    <br><br>
-    <input type="submit" name="commenter" value="commenter">
-</form>
+<div >
+            <form method="post" class="commentaire_form_container">
+                <textarea name="commentaire" id="commentaire" cols="30" rows="3"></textarea>
+                <input type="submit" name="commenter" class="button" value="commenter">
+            </form>
 </div>
 
-<div>
     <?php
         $com = $pdo ->query("SELECT * FROM commentaire WHERE id_post = '$_GET[id_post]'"); 
         while ($comcom = $com-> fetch(PDO::FETCH_ASSOC)) {  
@@ -89,20 +130,33 @@ if (isset($_POST["commenter"])) {
     $get_pseudo = $pdo ->query("SELECT pseudo, photo_profil FROM membre WHERE id_membre = '$comcom[id_membre]'"); 
     $pseudo = $get_pseudo-> fetch(PDO::FETCH_ASSOC); 
     ?> 
-    <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a></div></div> 
-            
-    <div>
-        <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
 
-        <?php echo $comcom['date_com'];?> <br>
+<div class="commentaire_container">
+    <div class="commentaire_auteur">
+        <div class="commentaire_pseudo">
+            <img src="<?php echo $pseudo['photo_profil'] ?>" alt="" width="200px">
+            <a href="voir_profil.php?id_membre=<?= $comcom['id_membre'] ?>"> <?php echo $pseudo['pseudo']?> </a>   
+        </div>
+        <div class="commentaire_date">
+            <?php echo $comcom['date_com'];?> <br>
+        </div> 
     </div>
-    <div>
+    <div class="commentaire_content">
         <?php echo $comcom['content'];?> <br><br>
     </div>
+</div>    
+    
 
         
     <?php
         }
     ?>
     
-</div>
+
+
+</body>
+</html>
+
+<?php
+include('menu-principal.php');
+?>

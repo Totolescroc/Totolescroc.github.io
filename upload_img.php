@@ -9,6 +9,7 @@ define("RACINE_SITE", '/social-network/');
 
 //VARIABLE : 
 
+
 $content = "";
 
 /************************************************************
@@ -67,13 +68,11 @@ if (!empty($_POST)) {
 					) {
 						// On renomme le fichier
 						$nomImage = "photo-profil" . $currentUsers['id_membre'] . "." . $extension/*Donner un nom aux fichiers (par exemple un random)*/;
-						
 						// Si c'est OK, on teste l'upload
 						if (move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET . $nomImage)) {
 
 							// L'image est uploadé
 							$x = "./upload/" . $nomImage;
-
 
 							$pdo->exec("UPDATE membre SET photo_profil = '$x' WHERE id_membre = '$currentUsers[id_membre]'");
 
@@ -104,6 +103,8 @@ if (!empty($_POST)) {
 }
 
 
+
+
 if (!empty($message)) {
 	echo '<p>', "\n";
 	echo "\t\t<strong>", htmlspecialchars($message), "</strong>\n";
@@ -114,7 +115,7 @@ if (!empty($message)) {
 <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
   <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_SIZE; ?>" />
   <input name="fichier" type="file" id="fichier_a_uploader" />
-  <input type="submit" name="submit" value="Valider" class="cta" />
+  <input type="submit" name="submit" class="button" value="Valider" class="cta" />
 </form>
 <?php
     $get_image = $pdo ->query("SELECT photo_profil FROM membre WHERE id_membre = '$currentUsers[id_membre]'"); 
@@ -125,5 +126,5 @@ if (!empty($message)) {
 
 
 
-<img src="<?php echo $image['photo_profil'] ?>" alt="" width="200px">
+<!-- <img src="<?php echo $image['photo_profil'] ?>" alt="" width="200px"> -->
 
